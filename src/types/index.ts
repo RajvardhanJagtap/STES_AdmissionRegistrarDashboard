@@ -15,15 +15,42 @@ export interface Notification {
   message: string;
   timestamp: Date;
   read: boolean;
-  type: 'info' | 'warning' | 'success' | 'error';
+  type: "info" | "warning" | "success" | "error";
 }
 
 // Search result types
 export interface SearchResult {
   id: string;
   title: string;
-  type: 'resource' | 'student' | 'course';
+  type: "resource" | "student" | "course";
   description?: string;
+}
+
+// Module types
+export type ModuleStatus = "active" | "completed" | "upcoming";
+export type Semester = "1" | "2" | "both";
+
+export interface Module {
+  id: string;
+  code: string;
+  name: string;
+  status: ModuleStatus;
+  students: number;
+  credits: number;
+  schedule: string;
+  room: string;
+  progress: number;
+  semester?: Semester;
+}
+
+export interface AssignedModulesData {
+  modules: Module[];
+  stats: {
+    activeModules: number;
+    totalStudents: number;
+    totalCredits: number;
+    teachingHoursPerWeek: number;
+  };
 }
 
 // Component props types
@@ -41,7 +68,7 @@ export interface SidebarProps {
 export interface AvatarProps {
   name: string;
   src?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
@@ -84,7 +111,7 @@ export interface StatCard {
 }
 
 // Class/Course types
-export type ClassStatus = 'completed' | 'ongoing' | 'upcoming';
+export type ClassStatus = "completed" | "ongoing" | "upcoming";
 
 export interface ClassSession {
   id: string;
@@ -172,7 +199,7 @@ export interface TodaysMeetingsProps {
 
 // Leave Management types
 export interface LeaveBalance {
-  type: 'casual' | 'medical' | 'earned';
+  type: "casual" | "medical" | "earned";
   label: string;
   remaining: number;
   total: number;
@@ -181,10 +208,10 @@ export interface LeaveBalance {
 
 export interface LeaveApplication {
   id: string;
-  type: 'casual' | 'medical' | 'earned';
+  type: "casual" | "medical" | "earned";
   dateRange: string;
   duration: number;
-  status: 'approved' | 'pending' | 'rejected';
+  status: "approved" | "pending" | "rejected";
   reason: string;
   authority: string;
   appliedDate: string;
@@ -202,7 +229,7 @@ export interface LeaveManagementProps {
 // Recent Activity types
 export interface ActivityItem {
   id: string;
-  type: 'submission' | 'attendance' | 'message' | 'deadline' | 'grading';
+  type: "submission" | "attendance" | "message" | "deadline" | "grading";
   title: string;
   description: string;
   timestamp: string;
@@ -218,7 +245,7 @@ export interface RecentActivityProps {
 }
 
 // Mark Attendance types
-export type AttendanceStatus = 'present' | 'absent';
+export type AttendanceStatus = "present" | "absent";
 
 export interface AttendanceStudent {
   id: string;
