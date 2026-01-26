@@ -22,7 +22,7 @@ export default function ModuleCard({ module }: ModuleCardProps) {
       case "completed":
         return "bg-gray-100 text-gray-700";
       case "upcoming":
-        return "bg-blue-100 text-blue-700";
+        return "bg-primary-100 text-primary-700";
       default:
         return "bg-gray-100 text-gray-700";
     }

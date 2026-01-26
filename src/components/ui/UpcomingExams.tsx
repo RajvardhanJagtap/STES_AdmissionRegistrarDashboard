@@ -157,7 +157,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
 
                 <div className="bg-white border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    <ClipboardList size={18} className="text-[#0A6E8A]" />
+                    <ClipboardList size={18} className="text-primary-500" />
                     Total Marks
                   </div>
                   <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -174,7 +174,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
                   {selectedExam.topicsCovered.map((topic) => (
                     <span
                       key={topic}
-                      className="px-4 py-2 rounded-xl border border-[#0A6E8A]/30 text-[#0A6E8A] font-semibold text-sm bg-[#0A6E8A]/5"
+                      className="px-4 py-2 rounded-xl border border-primary-200 text-primary-500 font-semibold text-sm bg-primary-50 hover:bg-primary-100 transition-colors"
                     >
                       {topic}
                     </span>

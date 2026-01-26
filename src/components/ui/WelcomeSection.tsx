@@ -23,27 +23,15 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({ userName, employeeId })
   };
 
   return (
-    <div className="w-full bg-white border-b border-gray-200">
-      <div className="px-6 py-6 sm:py-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+    <div className="w-full bg-gradient-to-r from-slate-50 via-blue-50/30 to-slate-50 border-b border-gray-200 backdrop-blur-sm">
+      <div className="px-6 py-4 sm:py-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-transparent mb-2">
           Hello, {userName} 🎓
         </h1>
         
-        <p className="text-base sm:text-lg text-gray-600 mb-4">
+        <p className="text-base sm:text-lg text-gray-600 font-medium mb-0 leading-relaxed">
           Inspire minds, shape futures, and empower the next generation of leaders
         </p>
-
-        <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base text-gray-700">
-          <span className="font-medium">{semester} Semester {academicYear}</span>
-          {employeeId && (
-            <>
-              <span className="text-gray-400">•</span>
-              <span className="font-medium">Employee ID: {employeeId}</span>
-            </>
-          )}
-          <span className="text-gray-400 hidden sm:inline">•</span>
-          <span className="w-full sm:w-auto font-medium">{getCurrentDate()}</span>
-        </div>
       </div>
     </div>
   );

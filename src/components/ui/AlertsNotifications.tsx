@@ -30,19 +30,19 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
       high: {
         container: 'bg-white hover:border-2 transition-all duration-300',
         borderColor: '#0A6E8A',
-        badge: 'bg-[#0A6E8A]/10 text-[#0A6E8A] border border-[#0A6E8A]/30',
+        badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'URGENT',
       },
       medium: {
         container: 'bg-white hover:border-2 transition-all duration-300',
         borderColor: '#0A6E8A',
-        badge: 'bg-[#0A6E8A]/10 text-[#0A6E8A] border border-[#0A6E8A]/30',
+        badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'IMPORTANT',
       },
       low: {
         container: 'bg-white hover:border-2 transition-all duration-300',
         borderColor: '#0A6E8A',
-        badge: 'bg-[#0A6E8A]/10 text-[#0A6E8A] border border-[#0A6E8A]/30',
+        badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'INFO',
       },
     };

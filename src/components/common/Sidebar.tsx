@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '', isOpen = false, onClo
                 font-semibold
                 transition-all
                 duration-200
-                ${mainActive ? 'bg-[#0A6E8A] text-white shadow-md' : 'text-gray-700 hover:bg-gray-50'}
+                ${mainActive ? 'bg-primary-500 text-white shadow-md' : 'text-gray-700 hover:bg-gray-50'}
               `}
             >
               <div className="w-5 h-5 flex items-center justify-center">{item.icon}</div>
@@ -92,8 +92,8 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '', isOpen = false, onClo
               duration-200
               ${
                 level > 0
-                  ? `py-2.5 text-xs ${subActive ? 'bg-teal-50 text-[#0A6E8A] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`
-                  : `py-3 text-sm ${mainActive ? 'bg-[#0A6E8A] text-white shadow-md' : 'text-gray-700 hover:bg-gray-50'}`
+                  ? `py-2.5 text-xs ${subActive ? 'bg-primary-50 text-primary-500 font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`
+                  : `py-3 text-sm ${mainActive ? 'bg-primary-500 text-white shadow-md' : 'text-gray-700 hover:bg-gray-50'}`
               }
             `}
           >

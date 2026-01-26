@@ -20,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [semesterDropdownOpen, setSemesterDropdownOpen] = useState(false);
+  const [viewedNotifications, setViewedNotifications] = useState<Set<string>>(new Set());
   const profileRef = useRef<HTMLDivElement>(null);
   const notificationsRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
@@ -106,12 +107,21 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
     setNotificationsOpen((prev) => !prev);
   };
 
+  const handleNotificationView = (notificationId: string) => {
+    setViewedNotifications((prev) => new Set(prev).add(notificationId));
+  };
+
   const currentAlerts = useMemo(() => getAlertsDataForTerm(academicYear, semester), [academicYear, semester]);
 
   const sortedAlerts = useMemo(() => {
     const alerts = currentAlerts?.alerts ?? [];
     return [...alerts].sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
   }, [currentAlerts]);
+
+  const unreadCount = useMemo(() => {
+    const alerts = currentAlerts?.alerts ?? [];
+    return Math.max(0, alerts.length - viewedNotifications.size);
+  }, [currentAlerts, viewedNotifications]);
 
   const formatRelativeTime = (timestamp: string) => {
     const now = Date.now();
@@ -202,7 +212,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
               aria-label="Toggle menu"
             >
-              <Menu className="w-6 h-6" style={{ color: '#0A6E8A' }} />
+              <Menu className="w-6 h-6 text-primary-500" />
             </button>
             <Image
               src="/images/ur-logo.jpeg"
@@ -212,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
               className="object-contain rounded-full"
               priority
             />
-            <h1 className="text-xl font-bold tracking-wide" style={{ color: '#0A6E8A' }}>
+            <h1 className="text-xl font-bold tracking-wide text-primary-500">
               SAMPS UR
             </h1>
           </div>
@@ -246,7 +256,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       setYearDropdownOpen(false);
                     }}
                     className={`w-full px-4 py-2.5 text-sm text-left hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-                      academicYear === '2024-2025' ? 'bg-blue-50 text-[#0A6E8A] font-semibold' : 'text-gray-700'
+                      academicYear === '2024-2025' ? 'bg-primary-50 text-primary-500 font-semibold' : 'text-gray-700'
                     }`}
                   >
                     {academicYear === '2024-2025' && (
@@ -262,7 +272,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       setYearDropdownOpen(false);
                     }}
                     className={`w-full px-4 py-2.5 text-sm text-left hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-                      academicYear === '2025-2026' ? 'bg-blue-50 text-[#0A6E8A] font-semibold' : 'text-gray-700'
+                      academicYear === '2025-2026' ? 'bg-primary-50 text-primary-500 font-semibold' : 'text-gray-700'
                     }`}
                   >
                     {academicYear === '2025-2026' && (
@@ -296,7 +306,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       setSemesterDropdownOpen(false);
                     }}
                     className={`w-full px-4 py-2.5 text-sm text-left hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-                      semester === 'Fall' ? 'bg-blue-50 text-[#0A6E8A] font-semibold' : 'text-gray-700'
+                      semester === 'Fall' ? 'bg-primary-50 text-primary-500 font-semibold' : 'text-gray-700'
                     }`}
                   >
                     {semester === 'Fall' && (
@@ -312,7 +322,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       setSemesterDropdownOpen(false);
                     }}
                     className={`w-full px-4 py-2.5 text-sm text-left hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-                      semester === 'Spring' ? 'bg-blue-50 text-[#0A6E8A] font-semibold' : 'text-gray-700'
+                      semester === 'Spring' ? 'bg-primary-50 text-primary-500 font-semibold' : 'text-gray-700'
                     }`}
                   >
                     {semester === 'Spring' && (
@@ -348,7 +358,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   </svg>
                 }
                 onClick={handleNotificationClick}
-                badge={currentAlerts.unreadCount}
+                badge={unreadCount}
               />
 
               {notificationsOpen && (
@@ -359,7 +369,11 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   </div>
                   <div className="max-h-80 overflow-y-auto divide-y divide-gray-100 scrollbar-hide">
                     {sortedAlerts.map((alert) => (
-                      <div key={alert.id} className="px-4 py-3 hover:bg-gray-50 transition-colors">
+                      <div 
+                        key={alert.id} 
+                        className="px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer"
+                        onMouseEnter={() => handleNotificationView(alert.id)}
+                      >
                         <div className="flex items-start gap-3">
                           <div
                             className={`mt-0.5 w-2 h-2 rounded-full ${
@@ -367,7 +381,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                                 ? 'bg-red-500'
                                 : alert.priority === 'medium'
                                 ? 'bg-amber-400'
-                                : 'bg-blue-400'
+                                : 'bg-primary-500'
                             }`}
                           />
                           <div className="flex-1">
@@ -458,7 +472,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       onClick={handleOpenProfile}
                       className="w-full px-4 py-2.5 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors text-gray-900"
                     >
-                      <User size={18} style={{ color: '#0A6E8A' }} />
+                      <User size={18} className="text-primary-500" />
                       <span className="text-sm font-medium">Profile</span>
                     </button>
 
@@ -466,7 +480,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       onClick={handleOpenSettings}
                       className="w-full px-4 py-2.5 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors text-gray-900"
                     >
-                      <Settings size={18} style={{ color: '#0A6E8A' }} />
+                      <Settings size={18} className="text-primary-500" />
                       <span className="text-sm font-medium">Settings</span>
                     </button>
 
@@ -477,7 +491,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                       }}
                       className="w-full px-4 py-2.5 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors text-gray-900"
                     >
-                      <HelpCircle size={18} style={{ color: '#0A6E8A' }} />
+                      <HelpCircle size={18} className="text-primary-500" />
                       <span className="text-sm font-medium">Help</span>
                     </button>
 
@@ -503,7 +517,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-in fade-in zoom-in-95">
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#0A6E8A] to-[#0a5d75] px-6 py-6 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Edit Profile</h2>
               <button
                 onClick={() => setProfileModalOpen(false)}
@@ -523,7 +537,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   name="username"
                   value={formData.username}
                   onChange={handleFormChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#0A6E8A] focus:ring-2 focus:ring-[#0A6E8A]/20 transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors"
                   placeholder="Enter your username"
                 />
               </div>
@@ -553,7 +567,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                 <button
                   type="button"
                   onClick={handleSaveProfile}
-                  className="flex-1 px-4 py-2.5 bg-[#0A6E8A] hover:bg-[#085a70] text-white font-semibold rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
                 >
                   Save Changes
                 </button>
@@ -568,7 +582,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-in fade-in zoom-in-95">
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#0A6E8A] to-[#0a5d75] px-6 py-6 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Change Password</h2>
               <button
                 onClick={() => setSettingsModalOpen(false)}
@@ -588,7 +602,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   name="oldPassword"
                   value={formData.oldPassword}
                   onChange={handleFormChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#0A6E8A] focus:ring-2 focus:ring-[#0A6E8A]/20 transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors"
                   placeholder="Enter current password"
                 />
               </div>
@@ -602,7 +616,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                     name="newPassword"
                     value={formData.newPassword}
                     onChange={handleFormChange}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#0A6E8A] focus:ring-2 focus:ring-[#0A6E8A]/20 transition-colors pr-10"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors pr-10"
                     placeholder="Enter new password"
                   />
                   <button
@@ -623,7 +637,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleFormChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#0A6E8A] focus:ring-2 focus:ring-[#0A6E8A]/20 transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors"
                   placeholder="Confirm new password"
                 />
               </div>
@@ -640,7 +654,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                 <button
                   type="button"
                   onClick={handleSaveSettings}
-                  className="flex-1 px-4 py-2.5 bg-[#0A6E8A] hover:bg-[#085a70] text-white font-semibold rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
                 >
                   Update Password
                 </button>
@@ -655,7 +669,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-in fade-in zoom-in-95 max-h-[90vh] overflow-y-auto">
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#0A6E8A] to-[#0a5d75] px-6 py-6 flex items-center justify-between sticky top-0">
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-6 flex items-center justify-between sticky top-0">
               <h2 className="text-xl font-bold text-white">Help & Support</h2>
               <button
                 onClick={() => setHelpModalOpen(false)}
@@ -715,8 +729,8 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
               </div>
 
               {/* Contact Section */}
-              <div className="bg-[#0A6E8A]/5 border border-[#0A6E8A]/30 rounded-lg p-4">
-                <h3 className="heading-sm mb-3" style={{ color: '#0A6E8A' }}>Need More Help?</h3>
+              <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
+                <h3 className="heading-sm mb-3 text-primary-500">Need More Help?</h3>
                 <p className="text-sm text-gray-600 mb-3">
                   Can&apos;t find what you&apos;re looking for? Our support team is here to help.
                 </p>
@@ -730,7 +744,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
               {/* Close Button */}
               <button
                 onClick={() => setHelpModalOpen(false)}
-                className="w-full px-4 py-2.5 bg-[#0A6E8A] hover:bg-[#085a70] text-white font-semibold rounded-lg transition-colors"
+                className="w-full px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
               >
                 Close
               </button>

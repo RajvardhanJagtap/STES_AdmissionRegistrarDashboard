@@ -40,9 +40,9 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({ data 
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 w-full">
+    <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 w-full h-full flex flex-col">
       {/* Header with Title and Toggle */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h2 className="heading-lg">Student Engagement Trends</h2>
           <div className="flex items-center gap-1.5 px-2 py-1 rounded-md" style={{ backgroundColor: '#F0FDFA' }}>
@@ -79,7 +79,7 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({ data 
       </div>
 
       {/* Metrics Row - Teal Palette */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-4">
         {/* Average */}
         <div className="rounded-lg p-4 border" style={{ backgroundColor: '#F0FDFA', borderColor: '#E0F2FE' }}>
           <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: '#0A6E8A' }}>Average</p>
@@ -100,7 +100,7 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({ data 
       </div>
 
       {/* Vertical Bar Chart - SOFT BLUE PALETTE */}
-      <div className="bg-white rounded-lg p-4 border border-gray-100" style={{ height: '400px' }}>
+      <div className="bg-white rounded-lg p-4 border border-gray-100 flex-1 min-h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={currentData.chartData}

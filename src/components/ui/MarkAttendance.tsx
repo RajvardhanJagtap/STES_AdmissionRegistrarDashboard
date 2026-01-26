@@ -339,17 +339,17 @@ const MarkAttendance: React.FC<MarkAttendanceProps> = ({ data }) => {
 
           const cardBorder =
             current === "present"
-              ? "border-[#0A6E8A]"
+              ? "border-primary-500"
               : current === "absent"
                 ? "border-red-500"
                 : "border-gray-200";
 
           const avatarBg =
             current === "present"
-              ? "bg-[#0A6E8A]"
+              ? "bg-primary-500"
               : current === "absent"
                 ? "bg-red-500"
-                : "bg-[#0A6E8A]";
+                : "bg-primary-500";
 
           return (
             <div
@@ -360,7 +360,7 @@ const MarkAttendance: React.FC<MarkAttendanceProps> = ({ data }) => {
               {current && (
                 <div
                     className={`absolute -top-3 -right-3 w-8 h-8 rounded-full flex items-center justify-center border-4 border-white ${
-                    current === "present" ? "bg-[#0A6E8A]" : "bg-red-500"
+                    current === "present" ? "bg-primary-500" : "bg-red-500"
                   }`}
                 >
                   {current === "present" ? (
@@ -393,8 +393,8 @@ const MarkAttendance: React.FC<MarkAttendanceProps> = ({ data }) => {
                   onClick={() => setStudentStatus(student.id, "present")}
                   className={`w-12 h-12 rounded-2xl border flex items-center justify-center transition-colors ${
                     current === "present"
-                      ? "bg-[#0A6E8A] border-[#0A6E8A] text-white"
-                      : "bg-white border-gray-200 text-[#0A6E8A] hover:bg-gray-50"
+                      ? "bg-primary-500 border-primary-500 text-white"
+                      : "bg-white border-gray-200 text-primary-500 hover:bg-gray-50"
                   }`}
                   aria-label="Mark present"
                 >
@@ -425,8 +425,8 @@ const MarkAttendance: React.FC<MarkAttendanceProps> = ({ data }) => {
         disabled={total === 0 || marked < total}
         className={`mt-6 w-full rounded-2xl py-4 px-6 font-bold text-white flex items-center justify-center gap-3 transition-colors ${
           marked === total && total > 0
-            ? "bg-[#0A6E8A] hover:bg-[#085a70]"
-            : "bg-[#0A6E8A]/40 cursor-not-allowed"
+            ? "bg-primary-500 hover:bg-primary-600"
+            : "bg-primary-500/40 cursor-not-allowed"
         }`}
       >
         <BadgeCheck size={18} />

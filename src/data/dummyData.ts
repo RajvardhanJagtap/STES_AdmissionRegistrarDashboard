@@ -1011,3 +1011,87 @@ export const assignedModulesData: AssignedModulesData = {
     },
   ],
 };
+
+// Timetable sessions data - synced with Teaching → Timetable
+export const timetableSessions = [
+  {
+    id: "s-1",
+    dayIndex: 0, // Monday
+    slotIndex: 0, // 09:00 – 10:30
+    moduleCode: "CS301",
+    moduleName: "Advanced Algorithms",
+    location: "Room A-204",
+    type: "lecture" as const,
+  },
+  {
+    id: "s-2",
+    dayIndex: 2, // Wednesday
+    slotIndex: 0, // 09:00 – 10:30
+    moduleCode: "CS301",
+    moduleName: "Advanced Algorithms",
+    location: "Room A-204",
+    type: "lecture" as const,
+  },
+  {
+    id: "s-3",
+    dayIndex: 1, // Tuesday
+    slotIndex: 1, // 11:00 – 12:30
+    moduleCode: "CS420",
+    moduleName: "Software Engineering",
+    location: "Room B-105",
+    type: "lecture" as const,
+  },
+  {
+    id: "s-4",
+    dayIndex: 2, // Wednesday
+    slotIndex: 1, // 11:00 – 12:30
+    moduleCode: "CS410",
+    moduleName: "AI Fundamentals",
+    location: "Room B-203",
+    type: "lecture" as const,
+  },
+  {
+    id: "s-5",
+    dayIndex: 3, // Thursday
+    slotIndex: 1, // 11:00 – 12:30
+    moduleCode: "CS420",
+    moduleName: "Software Engineering",
+    location: "Room B-105",
+    type: "tutorial" as const,
+  },
+  {
+    id: "s-6",
+    dayIndex: 0, // Monday
+    slotIndex: 2, // 14:00 – 15:30
+    moduleCode: "CS305",
+    moduleName: "Database Systems",
+    location: "Lab A-205",
+    type: "lab" as const,
+  },
+  {
+    id: "s-7",
+    dayIndex: 3, // Thursday
+    slotIndex: 2, // 14:00 – 15:30
+    moduleCode: "CS305",
+    moduleName: "Database Systems",
+    location: "Lab A-205",
+    type: "lab" as const,
+  },
+  {
+    id: "s-8",
+    dayIndex: 4, // Friday
+    slotIndex: 2, // 14:00 – 15:30
+    moduleCode: "CS210",
+    moduleName: "Web Development",
+    location: "Lab C-301",
+    type: "lab" as const,
+  },
+];
+
+/**
+ * Retrieves all timetable sessions
+ * @returns Array of timetable sessions
+ */
+export function getTimetableSessions() {
+  return timetableSessions;
+}

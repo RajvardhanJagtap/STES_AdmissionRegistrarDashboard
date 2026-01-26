@@ -9,12 +9,12 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
   const [selectedActivity, setSelectedActivity] = useState<ActivityItem | null>(null);
 
   const getActivityIcon = (type: string) => {
-    const iconProps = { size: 18, className: 'text-[#0A6E8A]' };
+    const iconProps = { size: 18, className: 'text-primary-500' };
     switch (type) {
       case 'submission':
         return <FileText {...iconProps} className="text-green-600" />;
       case 'attendance':
-        return <CheckSquare {...iconProps} className="text-[#0A6E8A]" />;
+        return <CheckSquare {...iconProps} className="text-primary-500" />;
       case 'message':
         return <MessageSquare {...iconProps} className="text-purple-600" />;
       case 'deadline':
@@ -31,7 +31,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
       case 'submission':
         return 'bg-green-50';
       case 'attendance':
-        return 'bg-[#0A6E8A]/10';
+        return 'bg-primary-50';
       case 'message':
         return 'bg-purple-50';
       case 'deadline':
@@ -43,19 +43,20 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
     }
   };
 
+  const displayedActivities = data.activities.slice(0, 3);
+
   return (
     <>
-      <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm h-full flex flex-col">
+      <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-start justify-between mb-5">
+        <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="heading-lg">Recent Activity</h2>
             <p className="body-text">Latest updates and notifications</p>
           </div>
           <button 
             onClick={() => alert('View All Activities')}
-            className="font-semibold text-sm transition-colors hover:opacity-90"
-            style={{ color: '#0A6E8A' }}
+            className="font-semibold text-sm text-primary-500 hover:text-primary-600 transition-colors"
           >
             View All
           </button>
@@ -64,7 +65,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
         {/* Activity List */}
         <div className="flex-1 overflow-hidden flex flex-col">
           <div className="flex-1 overflow-y-auto space-y-2">
-            {data.activities.map((activity) => (
+            {displayedActivities.map((activity) => (
               <button
                 key={activity.id}
                 type="button"
@@ -83,7 +84,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-gray-900 transition-colors" style={{ color: hoveredId === activity.id ? '#0A6E8A' : undefined }}>
+                    <div className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-500">
                       {activity.title}
                     </div>
                     <div className="text-xs text-gray-600 line-clamp-2 mt-1">
@@ -111,7 +112,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
 
           <div className="relative w-[92%] max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#0A6E8A] to-[#0a5d75] px-8 py-6 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 px-8 py-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                   {getActivityIcon(selectedActivity.type)}
@@ -159,7 +160,7 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
                     alert(`Action taken on: ${selectedActivity.title}`);
                     setSelectedActivity(null);
                   }}
-                  className="flex-1 px-4 py-2.5 bg-[#0A6E8A] hover:bg-[#085a70] text-white font-semibold rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
                 >
                   Take Action
                 </button>

@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 
 const Footer: React.FC = () => {
-  const accent = '#0A6E8A';
   const highlight = '#E91E63';
 
   return (
@@ -13,7 +12,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* University Info */}
           <div>
-            <h3 className="text-base font-bold mb-3" style={{ color: accent }}>
+            <h3 className="text-base font-bold mb-3 text-primary-500">
               University of Rwanda
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -26,17 +25,17 @@ const Footer: React.FC = () => {
             <h3 className="text-base font-bold text-gray-900 mb-3">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   Academic Calendar
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   Teaching Guidelines
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   Faculty Handbook
                 </Link>
               </li>
@@ -48,17 +47,17 @@ const Footer: React.FC = () => {
             <h3 className="text-base font-bold text-gray-900 mb-3">Lecturer Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   IT Help Desk
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   Library Services
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-gray-600 hover:text-[#0A6E8A] transition-colors">
+                <Link href="#" className="text-sm text-gray-600 hover:text-primary-500 transition-colors">
                   HR Office
                 </Link>
               </li>

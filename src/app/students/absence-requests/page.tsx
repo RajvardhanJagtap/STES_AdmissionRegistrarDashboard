@@ -88,7 +88,7 @@ function StatusPill({ status }: { status: RequestStatus }) {
 
 function DocumentBadge() {
   return (
-    <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-100 text-blue-700 text-sm font-semibold">
+    <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-primary-100 text-primary-700 text-sm font-semibold">
       Document Attached
     </span>
   );

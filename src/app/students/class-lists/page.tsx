@@ -71,7 +71,7 @@ function StatTile({
 
 function AvatarBadge({ initials }: { initials: string }) {
   return (
-    <div className="w-12 h-12 rounded-xl bg-primary-800 text-white flex items-center justify-center font-bold">
+    <div className="w-12 h-12 rounded-xl bg-primary-500 text-white flex items-center justify-center font-bold">
       {initials}
     </div>
   );
@@ -79,7 +79,7 @@ function AvatarBadge({ initials }: { initials: string }) {
 
 function gpaPillClasses(gpa: number) {
   if (gpa >= 3.75) return "bg-green-100 text-green-700";
-  if (gpa >= 3.5) return "bg-blue-100 text-blue-700";
+  if (gpa >= 3.5) return "bg-primary-100 text-primary-700";
   return "bg-amber-100 text-amber-700";
 }
 

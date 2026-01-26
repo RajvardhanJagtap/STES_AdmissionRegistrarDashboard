@@ -48,9 +48,9 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
       {/* Header Section */}
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-start justify-between mb-4">
         <div>
           <h2 className="heading-lg mb-1 text-gray-900">{data.title}</h2>
           <p className="text-xs text-gray-500 mt-1">{data.subtitle}</p>
@@ -81,7 +81,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
       </div>
 
       {/* Chart Section */}
-      <div className="w-full" style={{ height: "340px" }}>
+      <div className="w-full flex-1 min-h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data.data}

@@ -116,7 +116,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
             <h2 className="heading-lg">Today&apos;s Meetings</h2>
             <p className="body-text">Scheduled for today</p>
           </div>
-          <button className="bg-white border border-[#0A6E8A]/30 text-[#0A6E8A] text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#0A6E8A]/5 transition-colors">
+          <button className="bg-white border border-primary-200 text-primary-500 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors">
             {data.meetings.length} Meetings
           </button>
         </div>
@@ -126,24 +126,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
         </div>
       </div>
 
-      {/* Upcoming Meetings Section */}
-      {data.upcomingMeetings.length > 0 && (
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div className="flex items-start justify-between mb-5">
-            <div>
-              <h2 className="heading-lg">Upcoming Meetings</h2>
-              <p className="body-text">Next scheduled meetings</p>
-            </div>
-            <button className="bg-white border border-[#0A6E8A]/30 text-[#0A6E8A] text-sm font-semibold px-4 py-2 rounded-xl hover:bg-[#0A6E8A]/5 transition-colors">
-              {Math.min(data.upcomingMeetings.length, 3)} Meetings
-            </button>
-          </div>
 
-          <div className="space-y-4">
-            {data.upcomingMeetings.slice(0, 3).map((meeting) => renderMeetingCard(meeting))}
-          </div>
-        </div>
-      )}
 
       {/* Meeting Details Modal */}
       {selectedMeeting && (
@@ -180,7 +163,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
                 <div className="grid grid-cols-2 gap-5">
                   <div className="bg-white border border-gray-200 rounded-2xl p-5">
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <Clock size={18} className="text-[#0A6E8A]" />
+                      <Clock size={18} className="text-primary-500" />
                       Time
                     </div>
                     <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -190,7 +173,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
 
                   <div className="bg-white border border-gray-200 rounded-2xl p-5">
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <Timer size={18} className="text-[#0A6E8A]" />
+                      <Timer size={18} className="text-primary-500" />
                       Duration
                     </div>
                     <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -200,7 +183,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
 
                   <div className="bg-white border border-gray-200 rounded-2xl p-5">
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <MapPin size={18} className="text-[#0A6E8A]" />
+                      <MapPin size={18} className="text-primary-500" />
                       Location
                     </div>
                     <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -210,7 +193,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
 
                   <div className="bg-white border border-gray-200 rounded-2xl p-5">
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <Users size={18} className="text-[#0A6E8A]" />
+                      <Users size={18} className="text-primary-500" />
                       Participants
                     </div>
                     <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -220,16 +203,16 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
                 </div>
 
                 {selectedMeeting.meetingLink && (
-                  <div className="mt-5 border-2 border-[#0A6E8A] rounded-2xl p-5">
+                  <div className="mt-5 border-2 border-primary-500 rounded-2xl p-5">
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
-                      <Link2 size={18} className="text-[#0A6E8A]" />
+                      <Link2 size={18} className="text-primary-500" />
                       Meeting Link
                     </div>
                     <a
                       href={selectedMeeting.meetingLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-3 block text-[#0A6E8A] hover:underline overflow-hidden text-ellipsis whitespace-nowrap"
+                      className="mt-3 block text-primary-500 hover:underline overflow-hidden text-ellipsis whitespace-nowrap"
                       title={selectedMeeting.meetingLink}
                     >
                       {selectedMeeting.meetingLink}
@@ -238,7 +221,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
                       href={selectedMeeting.meetingLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-4 block w-full bg-[#0A6E8A] hover:bg-[#085a70] text-white font-bold text-center py-3.5 rounded-2xl transition-colors"
+                      className="mt-4 block w-full bg-primary-500 hover:bg-primary-600 text-white font-bold text-center py-3.5 rounded-2xl transition-colors"
                     >
                       Join Meeting
                     </a>
@@ -247,7 +230,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
 
                 <div className="mt-5 bg-white border border-gray-200 rounded-2xl p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    <User size={18} className="text-[#0A6E8A]" />
+                    <User size={18} className="text-primary-500" />
                     Organized by
                   </div>
                   <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -256,7 +239,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
                 </div>
 
                 <div className="mt-7 flex items-center gap-2 text-gray-900 font-bold">
-                  <ClipboardList size={18} className="text-[#0A6E8A]" />
+                  <ClipboardList size={18} className="text-primary-500" />
                   Agenda
                 </div>
 
@@ -266,7 +249,7 @@ const TodaysMeetings: React.FC<TodaysMeetingsProps> = ({ data }) => {
                       key={`${idx}-${item}`}
                       className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center gap-4"
                     >
-                      <div className="w-10 h-10 rounded-full bg-[#0A6E8A] text-white font-extrabold flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-primary-500 text-white font-extrabold flex items-center justify-center flex-shrink-0">
                         {idx + 1}
                       </div>
                       <div className="font-semibold text-gray-900">{item}</div>
