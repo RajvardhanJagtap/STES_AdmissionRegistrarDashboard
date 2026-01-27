@@ -48,16 +48,16 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
+    <div className="h-full flex flex-col p-3 min-h-[260px]">
       {/* Header Section */}
-      <div className="flex items-start justify-between gap-4 mb-3">
+      <div className="flex items-start justify-between gap-3 mb-2.5">
         <div>
-          <h2 className="text-lg font-bold text-gray-900 leading-tight">
+          <h2 className="text-base font-semibold text-gray-900 leading-tight">
             {data.title}
           </h2>
-          <p className="text-xs text-gray-500 mt-1">{data.subtitle}</p>
+          <p className="text-[11px] text-gray-500 mt-1">{data.subtitle}</p>
         </div>
-        <div className="hidden sm:flex items-center gap-4 text-xs">
+        <div className="hidden sm:flex items-center gap-3 text-[11px]">
           <div className="flex items-center gap-2">
             <div
               className="w-3 h-3 rounded-full"
@@ -83,7 +83,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
       </div>
 
       {/* Chart Section */}
-      <div className="w-full flex-1 min-h-[220px]">
+      <div className="w-full flex-1 min-h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data.data}
@@ -183,3 +183,5 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
 };
 
 export default PerformanceChart;
+
+

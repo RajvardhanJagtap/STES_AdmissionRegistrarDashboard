@@ -36,29 +36,29 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
   }, [openExamId]);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-      <div className="flex items-start justify-between mb-5">
+    <div className="bg-white border border-gray-200 rounded-lg p-3.5 shadow-sm">
+      <div className="flex items-start justify-between mb-3.5">
         <div>
-          <h2 className="heading-lg">Upcoming Exams</h2>
-          <p className="body-text">Scheduled examinations</p>
+          <h2 className="text-lg font-semibold text-gray-900">Upcoming Exams</h2>
+          <p className="text-xs text-gray-600">Scheduled examinations</p>
         </div>
-        <button className="bg-white border border-gray-200 text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className="bg-white border border-gray-200 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors">
           {data.total} Exams
         </button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {data.exams.map((exam) => (
           <button
             key={exam.id}
             type="button"
             onClick={() => setOpenExamId(exam.id)}
-            className="group w-full text-left bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between gap-4 transition-all hover:shadow-sm"
-            style={{ borderColor: exam.id === openExamId ? '#0A6E8A' : undefined, borderWidth: exam.id === openExamId ? '2px' : '1px' }}
+            className="group w-full text-left bg-gray-50 border border-gray-200 rounded-lg p-3 flex items-center justify-between gap-3 transition-all hover:bg-gray-100"
+            style={{ borderColor: exam.id === openExamId ? '#024698' : undefined, borderWidth: exam.id === openExamId ? '2px' : '1px' }}
           >
-            <div className="flex items-center gap-4 min-w-0">
-              <div className="w-14 h-14 rounded-lg border-2 border-gray-200 flex flex-col items-center justify-center flex-shrink-0">
-                <div className="text-xl font-extrabold leading-none" style={{ color: '#0A6E8A' }}>
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-lg border-2 border-gray-200 flex flex-col items-center justify-center flex-shrink-0">
+                <div className="text-base font-extrabold leading-none" style={{ color: '#024698' }}>
                   {exam.day}
                 </div>
                 <div className="text-xs font-semibold text-gray-700 uppercase mt-1">
@@ -67,22 +67,22 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
               </div>
 
               <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="font-bold text-sm truncate text-gray-900 transition-colors" style={{ color: exam.id === openExamId ? '#0A6E8A' : undefined }}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-semibold text-sm truncate text-gray-900 transition-colors flex-1" style={{ color: exam.id === openExamId ? '#024698' : undefined }}>
                     {exam.title}
                   </h3>
-                  <span className="text-white text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: '#0A6E8A' }}>
+                  <span className="text-white text-[10px] font-bold px-2 py-[5px] rounded-full flex-shrink-0" style={{ backgroundColor: '#024698' }}>
                     {exam.courseCode}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-gray-700 mt-2">
+                <div className="flex items-center gap-1.5 text-xs text-gray-600 mt-1.5">
                   <Clock size={14} className="text-gray-500" />
                   <span>{exam.time}</span>
                 </div>
               </div>
             </div>
 
-            <ChevronRight size={18} className="text-gray-400 flex-shrink-0" />
+            <ChevronRight size={16} className="text-gray-400 flex-shrink-0" />
           </button>
         ))}
       </div>
@@ -99,7 +99,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
 
           <div className="relative w-[92%] max-w-3xl rounded-xl overflow-hidden shadow-2xl border border-gray-200">
             {/* Header */}
-            <div className="px-8 py-6 text-white" style={{ backgroundColor: '#0A6E8A' }}>
+            <div className="px-8 py-6 text-white" style={{ backgroundColor: '#024698' }}>
               <button
                 type="button"
                 aria-label="Close"
@@ -127,7 +127,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
               <div className="grid grid-cols-4 gap-5">
                 <div className="bg-white border border-gray-200 rounded-lg p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    <Clock size={18} style={{ color: '#0A6E8A' }} />
+                    <Clock size={18} style={{ color: '#024698' }} />
                     Time
                   </div>
                   <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -137,7 +137,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
 
                 <div className="bg-white border border-gray-200 rounded-lg p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    <MapPin size={18} style={{ color: '#0A6E8A' }} />
+                    <MapPin size={18} style={{ color: '#024698' }} />
                     Room
                   </div>
                   <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -147,7 +147,7 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
 
                 <div className="bg-white border border-gray-200 rounded-lg p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    <Timer size={18} style={{ color: '#0A6E8A' }} />
+                    <Timer size={18} style={{ color: '#024698' }} />
                     Duration
                   </div>
                   <div className="mt-2 text-sm font-extrabold text-gray-900">
@@ -206,3 +206,5 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => {
 };
 
 export default UpcomingExams;
+
+

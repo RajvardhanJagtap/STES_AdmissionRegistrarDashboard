@@ -56,16 +56,16 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
 
   return (
     <>
-      <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm h-full flex flex-col">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-3">
           <div>
-            <h2 className="heading-lg">Recent Activity</h2>
-            <p className="body-text">Latest updates and notifications</p>
+            <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
+            <p className="text-xs text-gray-600">Latest updates and notifications</p>
           </div>
           <button
             onClick={() => alert("View All Activities")}
-            className="font-semibold text-sm text-primary-500 hover:text-primary-600 transition-colors"
+            className="font-semibold text-xs text-primary-500 hover:text-primary-600 transition-colors"
           >
             View All
           </button>
@@ -81,9 +81,9 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
                 onClick={() => setSelectedActivity(activity)}
                 onMouseEnter={() => setHoveredId(activity.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className={`w-full text-left border border-gray-200 rounded-lg p-3 transition-all group ${
+                className={`w-full text-left border border-gray-200 rounded-lg p-3 transition-all group text-sm ${
                   hoveredId === activity.id
-                    ? `${getActivityColor(activity.type)} border-gray-300 shadow-sm`
+                    ? "bg-gray-100 border-gray-300"
                     : "bg-gray-50 hover:bg-gray-100"
                 }`}
               >
@@ -200,3 +200,5 @@ const RecentActivity: React.FC<RecentActivityProps> = ({ data }) => {
 };
 
 export default RecentActivity;
+
+

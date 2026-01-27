@@ -16,7 +16,7 @@ const config: Config = {
           200: '#99dfeb',
           300: '#66cfe1',
           400: '#33bfd7',
-          500: '#0A6E8A',
+          500: '#024698',
           600: '#085a70',
           700: '#064556',
           800: '#04303c',
@@ -37,3 +37,4 @@ const config: Config = {
 }
 
 export default config
+

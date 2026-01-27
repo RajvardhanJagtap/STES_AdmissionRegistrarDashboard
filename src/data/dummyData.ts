@@ -74,6 +74,44 @@ export const dashboardStats: StatCard[] = [
   },
 ];
 
+// Module list
+export const modulesList = [
+  { id: "advanced-math", name: "Advanced Math" },
+  { id: "statistics", name: "Statistics" },
+  { id: "programming", name: "Programming" },
+  { id: "networks", name: "Networks" },
+  { id: "database", name: "Database" },
+];
+
+// Module-specific stats data
+export const moduleStatsData: Record<string, { students: number; pendingTasks: number; avgPerformance: number }> = {
+  "advanced-math": {
+    students: 42,
+    pendingTasks: 8,
+    avgPerformance: 87,
+  },
+  "statistics": {
+    students: 38,
+    pendingTasks: 6,
+    avgPerformance: 84,
+  },
+  "programming": {
+    students: 48,
+    pendingTasks: 12,
+    avgPerformance: 92,
+  },
+  "networks": {
+    students: 35,
+    pendingTasks: 5,
+    avgPerformance: 79,
+  },
+  "database": {
+    students: 41,
+    pendingTasks: 9,
+    avgPerformance: 86,
+  },
+};
+
 // Dummy today's classes data
 export const todayClassesData: TodayClassesData = {
   date: "Thursday, January 15, 2026",
@@ -118,20 +156,244 @@ export const todayClassesData: TodayClassesData = {
   ],
 };
 
-// Dummy performance chart data
-export const performanceChartData: PerformanceChartData = {
-  title: "Weekly Performance Trends",
-  subtitle: "Tracking student metrics across the week",
-  data: [
-    { day: "Mon", attendance: 85, engagement: 78, assignments: 65 },
-    { day: "Tue", attendance: 92, engagement: 85, assignments: 72 },
-    { day: "Wed", attendance: 88, engagement: 82, assignments: 78 },
-    { day: "Thu", attendance: 95, engagement: 88, assignments: 85 },
-    { day: "Fri", attendance: 90, engagement: 86, assignments: 88 },
-    { day: "Sat", attendance: 75, engagement: 70, assignments: 68 },
-    { day: "Sun", attendance: 68, engagement: 65, assignments: 60 },
-  ],
+// Module-specific performance data
+export const modulePerformanceData: Record<string, PerformanceChartData> = {
+  "advanced-math": {
+    title: "Weekly Performance Trends",
+    subtitle: "Tracking student metrics across the week",
+    data: [
+      { day: "Mon", attendance: 85, engagement: 78, assignments: 65 },
+      { day: "Tue", attendance: 92, engagement: 85, assignments: 72 },
+      { day: "Wed", attendance: 88, engagement: 82, assignments: 78 },
+      { day: "Thu", attendance: 95, engagement: 88, assignments: 85 },
+      { day: "Fri", attendance: 90, engagement: 86, assignments: 88 },
+      { day: "Sat", attendance: 75, engagement: 70, assignments: 68 },
+      { day: "Sun", attendance: 68, engagement: 65, assignments: 60 },
+    ],
+  },
+  "statistics": {
+    title: "Weekly Performance Trends",
+    subtitle: "Tracking student metrics across the week",
+    data: [
+      { day: "Mon", attendance: 90, engagement: 85, assignments: 80 },
+      { day: "Tue", attendance: 88, engagement: 83, assignments: 78 },
+      { day: "Wed", attendance: 92, engagement: 88, assignments: 85 },
+      { day: "Thu", attendance: 87, engagement: 82, assignments: 79 },
+      { day: "Fri", attendance: 85, engagement: 80, assignments: 76 },
+      { day: "Sat", attendance: 78, engagement: 75, assignments: 70 },
+      { day: "Sun", attendance: 72, engagement: 68, assignments: 65 },
+    ],
+  },
+  "programming": {
+    title: "Weekly Performance Trends",
+    subtitle: "Tracking student metrics across the week",
+    data: [
+      { day: "Mon", attendance: 88, engagement: 92, assignments: 88 },
+      { day: "Tue", attendance: 90, engagement: 94, assignments: 90 },
+      { day: "Wed", attendance: 85, engagement: 90, assignments: 86 },
+      { day: "Thu", attendance: 92, engagement: 95, assignments: 92 },
+      { day: "Fri", attendance: 87, engagement: 91, assignments: 88 },
+      { day: "Sat", attendance: 80, engagement: 85, assignments: 82 },
+      { day: "Sun", attendance: 75, engagement: 80, assignments: 78 },
+    ],
+  },
+  "networks": {
+    title: "Weekly Performance Trends",
+    subtitle: "Tracking student metrics across the week",
+    data: [
+      { day: "Mon", attendance: 82, engagement: 75, assignments: 70 },
+      { day: "Tue", attendance: 85, engagement: 78, assignments: 74 },
+      { day: "Wed", attendance: 80, engagement: 76, assignments: 72 },
+      { day: "Thu", attendance: 88, engagement: 82, assignments: 80 },
+      { day: "Fri", attendance: 84, engagement: 79, assignments: 76 },
+      { day: "Sat", attendance: 76, engagement: 72, assignments: 68 },
+      { day: "Sun", attendance: 70, engagement: 66, assignments: 62 },
+    ],
+  },
+  "database": {
+    title: "Weekly Performance Trends",
+    subtitle: "Tracking student metrics across the week",
+    data: [
+      { day: "Mon", attendance: 86, engagement: 82, assignments: 78 },
+      { day: "Tue", attendance: 89, engagement: 85, assignments: 82 },
+      { day: "Wed", attendance: 84, engagement: 80, assignments: 76 },
+      { day: "Thu", attendance: 90, engagement: 87, assignments: 84 },
+      { day: "Fri", attendance: 88, engagement: 84, assignments: 80 },
+      { day: "Sat", attendance: 77, engagement: 73, assignments: 70 },
+      { day: "Sun", attendance: 71, engagement: 67, assignments: 64 },
+    ],
+  },
 };
+
+// Dummy performance chart data (default)
+export const performanceChartData: PerformanceChartData = modulePerformanceData["advanced-math"];
+
+// Module-specific engagement data
+export const moduleEngagementData: Record<string, EngagementTrendsData> = {
+  "advanced-math": {
+    weekly: {
+      average: 83,
+      peak: 95,
+      growth: 30,
+      chartData: [
+        { month: "SEPT", engagement: 72 },
+        { month: "SEPT", engagement: 78 },
+        { month: "SEPT", engagement: 80 },
+        { month: "OCT", engagement: 85 },
+        { month: "OCT", engagement: 90 },
+        { month: "OCT", engagement: 88 },
+        { month: "NOV", engagement: 92 },
+        { month: "NOV", engagement: 95 },
+      ],
+    },
+    monthly: {
+      average: 82,
+      peak: 92,
+      growth: 28,
+      chartData: [
+        { month: "SEPT", engagement: 75 },
+        { month: "OCT", engagement: 88 },
+        { month: "NOV", engagement: 91 },
+        { month: "DEC", engagement: 85 },
+        { month: "JAN", engagement: 90 },
+        { month: "FEB", engagement: 87 },
+        { month: "MAR", engagement: 93 },
+        { month: "APR", engagement: 96 },
+      ],
+    },
+  },
+  "statistics": {
+    weekly: {
+      average: 80,
+      peak: 92,
+      growth: 25,
+      chartData: [
+        { month: "SEPT", engagement: 70 },
+        { month: "SEPT", engagement: 75 },
+        { month: "SEPT", engagement: 78 },
+        { month: "OCT", engagement: 82 },
+        { month: "OCT", engagement: 85 },
+        { month: "OCT", engagement: 83 },
+        { month: "NOV", engagement: 88 },
+        { month: "NOV", engagement: 92 },
+      ],
+    },
+    monthly: {
+      average: 79,
+      peak: 89,
+      growth: 24,
+      chartData: [
+        { month: "SEPT", engagement: 72 },
+        { month: "OCT", engagement: 82 },
+        { month: "NOV", engagement: 86 },
+        { month: "DEC", engagement: 81 },
+        { month: "JAN", engagement: 85 },
+        { month: "FEB", engagement: 83 },
+        { month: "MAR", engagement: 88 },
+        { month: "APR", engagement: 89 },
+      ],
+    },
+  },
+  "programming": {
+    weekly: {
+      average: 88,
+      peak: 98,
+      growth: 35,
+      chartData: [
+        { month: "SEPT", engagement: 78 },
+        { month: "SEPT", engagement: 84 },
+        { month: "SEPT", engagement: 86 },
+        { month: "OCT", engagement: 90 },
+        { month: "OCT", engagement: 94 },
+        { month: "OCT", engagement: 92 },
+        { month: "NOV", engagement: 96 },
+        { month: "NOV", engagement: 98 },
+      ],
+    },
+    monthly: {
+      average: 87,
+      peak: 96,
+      growth: 33,
+      chartData: [
+        { month: "SEPT", engagement: 80 },
+        { month: "OCT", engagement: 90 },
+        { month: "NOV", engagement: 94 },
+        { month: "DEC", engagement: 88 },
+        { month: "JAN", engagement: 92 },
+        { month: "FEB", engagement: 90 },
+        { month: "MAR", engagement: 95 },
+        { month: "APR", engagement: 96 },
+      ],
+    },
+  },
+  "networks": {
+    weekly: {
+      average: 76,
+      peak: 88,
+      growth: 20,
+      chartData: [
+        { month: "SEPT", engagement: 65 },
+        { month: "SEPT", engagement: 70 },
+        { month: "SEPT", engagement: 72 },
+        { month: "OCT", engagement: 76 },
+        { month: "OCT", engagement: 80 },
+        { month: "OCT", engagement: 78 },
+        { month: "NOV", engagement: 84 },
+        { month: "NOV", engagement: 88 },
+      ],
+    },
+    monthly: {
+      average: 75,
+      peak: 85,
+      growth: 22,
+      chartData: [
+        { month: "SEPT", engagement: 68 },
+        { month: "OCT", engagement: 76 },
+        { month: "NOV", engagement: 82 },
+        { month: "DEC", engagement: 74 },
+        { month: "JAN", engagement: 78 },
+        { month: "FEB", engagement: 76 },
+        { month: "MAR", engagement: 83 },
+        { month: "APR", engagement: 85 },
+      ],
+    },
+  },
+  "database": {
+    weekly: {
+      average: 81,
+      peak: 90,
+      growth: 27,
+      chartData: [
+        { month: "SEPT", engagement: 71 },
+        { month: "SEPT", engagement: 76 },
+        { month: "SEPT", engagement: 79 },
+        { month: "OCT", engagement: 83 },
+        { month: "OCT", engagement: 86 },
+        { month: "OCT", engagement: 84 },
+        { month: "NOV", engagement: 88 },
+        { month: "NOV", engagement: 90 },
+      ],
+    },
+    monthly: {
+      average: 80,
+      peak: 88,
+      growth: 26,
+      chartData: [
+        { month: "SEPT", engagement: 73 },
+        { month: "OCT", engagement: 81 },
+        { month: "NOV", engagement: 85 },
+        { month: "DEC", engagement: 79 },
+        { month: "JAN", engagement: 83 },
+        { month: "FEB", engagement: 81 },
+        { month: "MAR", engagement: 87 },
+        { month: "APR", engagement: 88 },
+      ],
+    },
+  },
+};
+
+// Dummy student engagement trends data (default)
+export const engagementTrendsData: EngagementTrendsData = moduleEngagementData["advanced-math"];
 
 // Dummy alerts data (Backend-ready)
 export const alertsData: AlertsData = {
@@ -178,40 +440,6 @@ export const alertsData: AlertsData = {
       isNew: false,
     },
   ],
-};
-
-// Dummy student engagement trends data
-export const engagementTrendsData: EngagementTrendsData = {
-  weekly: {
-    average: 83,
-    peak: 95,
-    growth: 30,
-    chartData: [
-      { month: "SEPT", engagement: 72 },
-      { month: "SEPT", engagement: 78 },
-      { month: "SEPT", engagement: 80 },
-      { month: "OCT", engagement: 85 },
-      { month: "OCT", engagement: 90 },
-      { month: "OCT", engagement: 88 },
-      { month: "NOV", engagement: 92 },
-      { month: "NOV", engagement: 95 },
-    ],
-  },
-  monthly: {
-    average: 82,
-    peak: 92,
-    growth: 28,
-    chartData: [
-      { month: "SEPT", engagement: 75 },
-      { month: "OCT", engagement: 88 },
-      { month: "NOV", engagement: 91 },
-      { month: "DEC", engagement: 85 },
-      { month: "JAN", engagement: 90 },
-      { month: "FEB", engagement: 87 },
-      { month: "MAR", engagement: 93 },
-      { month: "APR", engagement: 96 },
-    ],
-  },
 };
 
 // Dummy upcoming exams data

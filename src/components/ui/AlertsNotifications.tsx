@@ -29,19 +29,19 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
     const styles = {
       high: {
         container: 'bg-white hover:border-2 transition-all duration-300',
-        borderColor: '#0A6E8A',
+        borderColor: '#024698',
         badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'URGENT',
       },
       medium: {
         container: 'bg-white hover:border-2 transition-all duration-300',
-        borderColor: '#0A6E8A',
+        borderColor: '#024698',
         badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'IMPORTANT',
       },
       low: {
         container: 'bg-white hover:border-2 transition-all duration-300',
-        borderColor: '#0A6E8A',
+        borderColor: '#024698',
         badge: 'bg-primary-100 text-primary-700 border border-primary-200',
         badgeLabel: 'INFO',
       },
@@ -54,11 +54,11 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
     const iconProps = { size: 24 };
     switch (priority) {
       case 'high':
-        return <Phone {...iconProps} style={{ color: '#0A6E8A' }} />;
+        return <Phone {...iconProps} style={{ color: '#024698' }} />;
       case 'medium':
-        return <Calendar {...iconProps} style={{ color: '#0A6E8A' }} />;
+        return <Calendar {...iconProps} style={{ color: '#024698' }} />;
       case 'low':
-        return <Lightbulb {...iconProps} style={{ color: '#0A6E8A' }} />;
+        return <Lightbulb {...iconProps} style={{ color: '#024698' }} />;
       default:
         return <Bell {...iconProps} className="text-gray-500" />;
     }
@@ -81,7 +81,7 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
 
         {/* Count Badge */}
         {data.unreadCount > 0 && (
-          <span className="text-xs font-semibold px-3 py-1 rounded-full text-white" style={{ backgroundColor: '#0A6E8A' }}>
+          <span className="text-xs font-semibold px-3 py-1 rounded-full text-white" style={{ backgroundColor: '#024698' }}>
             {data.unreadCount} New
           </span>
         )}
@@ -127,7 +127,7 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
       </div>
 
       {/* View All Button */}
-      <button style={{ backgroundColor: '#0A6E8A' }} className="w-full hover:opacity-90 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200">
+      <button style={{ backgroundColor: '#024698' }} className="w-full hover:opacity-90 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200">
         View All Notifications
       </button>
     </div>
@@ -135,3 +135,5 @@ const AlertsNotifications: React.FC<AlertsNotificationsProps> = ({ data }) => {
 };
 
 export default AlertsNotifications;
+
+

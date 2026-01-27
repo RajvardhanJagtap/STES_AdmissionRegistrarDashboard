@@ -4,8 +4,8 @@ import ClassCard from "@/components/ui/ClassCard";
 
 const TodayClasses: React.FC<TodayClassesProps> = ({ data }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 h-full flex flex-col">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">Today's Schedule</h2>
+    <div className="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
+      <h2 className="text-lg font-semibold text-gray-900 mb-3">Today's Schedule</h2>
 
       {/* Content */}
       {data.totalClasses === 0 ? (
@@ -16,7 +16,7 @@ const TodayClasses: React.FC<TodayClassesProps> = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div className="space-y-3 flex-1">
+        <div className="space-y-2 flex-1">
           {data.classes.map((session) => (
             <ClassCard key={session.id} session={session} />
           ))}
@@ -27,3 +27,5 @@ const TodayClasses: React.FC<TodayClassesProps> = ({ data }) => {
 };
 
 export default TodayClasses;
+
+

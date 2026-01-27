@@ -166,3 +166,5 @@ export default function ModuleCard({ module }: ModuleCardProps) {
     </div>
   );
 }
+
+

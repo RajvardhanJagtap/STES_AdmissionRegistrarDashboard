@@ -238,3 +238,5 @@ const LeaveManagement: React.FC<LeaveManagementProps> = ({ data }) => {
 };
 
 export default LeaveManagement;
+
+

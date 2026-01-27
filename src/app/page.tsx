@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import MainLayout from "@/layouts/MainLayout";
 import StatCard from "@/components/ui/StatCard";
 import TodayClasses from "@/components/ui/TodayClasses";
@@ -11,10 +11,15 @@ import UpcomingExams from "@/components/ui/UpcomingExams";
 import TodaysMeetings from "@/components/ui/TodaysMeetings";
 import RecentActivity from "@/components/ui/RecentActivity";
 import WelcomeSection from "@/components/ui/WelcomeSection";
+import ModuleSelector from "@/components/ui/ModuleSelector";
 import {
   getDashboardData,
   currentUser,
   getTimetableSessions,
+  modulesList,
+  modulePerformanceData,
+  moduleEngagementData,
+  moduleStatsData,
 } from "@/data/dummyData";
 import { useAcademicContext } from "@/contexts/AcademicContext";
 import {
@@ -23,14 +28,15 @@ import {
   getFormattedTodayDate,
   type TimetableSession,
 } from "@/utils/timetableSync";
+import { type ClassSession } from "@/types";
 
 export default function HomePage() {
   const { academicYear, semester } = useAcademicContext();
+  const [selectedModule, setSelectedModule] = useState("advanced-math");
+
   const {
     dashboardStats,
-    performanceChartData,
     alertsData,
-    engagementTrendsData,
     upcomingExamsData,
     todaysMeetingsData,
     recentActivityData,
@@ -39,12 +45,55 @@ export default function HomePage() {
     [academicYear, semester],
   );
 
+  // Get module-specific performance and engagement data
+  const performanceChartData = useMemo(
+    () => modulePerformanceData[selectedModule],
+    [selectedModule],
+  );
+
+  const engagementTrendsData = useMemo(
+    () => moduleEngagementData[selectedModule],
+    [selectedModule],
+  );
+
+  // Update Active Courses to match total modules
+  const updatedStats = useMemo(() => {
+    const moduleStats = moduleStatsData[selectedModule];
+    return dashboardStats.map((stat) => {
+      if (stat.id === "active-courses") {
+        return {
+          ...stat,
+          value: modulesList.length,
+        };
+      }
+      if (stat.id === "total-students") {
+        return {
+          ...stat,
+          value: moduleStats.students,
+        };
+      }
+      if (stat.id === "pending-tasks") {
+        return {
+          ...stat,
+          value: moduleStats.pendingTasks,
+        };
+      }
+      if (stat.id === "avg-performance") {
+        return {
+          ...stat,
+          value: `${moduleStats.avgPerformance}%`,
+        };
+      }
+      return stat;
+    });
+  }, [dashboardStats, selectedModule]);
+
   // Sync today's schedule with timetable data
   const todayClassesData = useMemo(() => {
     const allTimetableSessions = getTimetableSessions();
     const todaySessions = getTodaySessions(allTimetableSessions);
 
-    const classes = todaySessions.map((session) =>
+    const classes: ClassSession[] = todaySessions.map((session) =>
       convertSessionToClassCard(session, session.slotIndex),
     );
 
@@ -65,9 +114,16 @@ export default function HomePage() {
         />
 
         {/* Stats Section - Professional Grid */}
-        <div className="px-6 py-3">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-            {dashboardStats.map((stat) => (
+        <div className="px-4 py-2">
+          <div className="flex items-center justify-end mb-2">
+            <ModuleSelector
+              modules={modulesList}
+              selectedModule={selectedModule}
+              onModuleChange={setSelectedModule}
+            />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+            {updatedStats.map((stat) => (
               <StatCard
                 key={stat.id}
                 title={stat.title}
@@ -80,46 +136,37 @@ export default function HomePage() {
         </div>
 
         {/* Main Content Section */}
-        <div className="px-6 py-2 pb-12">
+        <div className="px-4 py-2 pb-10">
           {/* Quick Actions + Today's Schedule - 2 Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-3 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
             {/* Left Column - Quick Actions */}
-            <div className="flex flex-col h-full">
+            <div className="h-full">
               <QuickActions />
             </div>
 
-            {/* Right Column - Today's Schedule */}
-            <div className="lg:col-span-2 flex flex-col h-full">
+            {/* Right Column - Today's Schedule + Upcoming Exams */}
+            <div className="lg:col-span-2 grid grid-cols-1 xl:grid-cols-2 gap-3">
               <TodayClasses data={todayClassesData} />
+              <UpcomingExams data={upcomingExamsData} />
             </div>
           </div>
 
           {/* Performance & Analytics - 2 Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-3 items-stretch">
-            {/* Left Column - Performance Chart (2 cols) */}
-            <div className="lg:col-span-2 flex flex-col space-y-3 h-full">
-              <div className="h-[360px] md:h-[380px] bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <PerformanceChart data={performanceChartData} />
-              </div>
-
-              <div className="h-[360px] md:h-[380px] bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <StudentEngagementTrends data={engagementTrendsData} />
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] lg:grid-rows-2 gap-3 mb-3">
+            {/* Row 1: Performance + Meetings */}
+            <div className="lg:col-start-1 lg:row-start-1 bg-white rounded-lg border border-gray-200 shadow-sm">
+              <PerformanceChart data={performanceChartData} />
+            </div>
+            <div className="lg:col-start-2 lg:row-start-1 bg-white rounded-lg border border-gray-200 shadow-sm">
+              <TodaysMeetings data={todaysMeetingsData} />
             </div>
 
-            {/* Right Column - Exams & Meetings (1 col) */}
-            <div className="flex flex-col space-y-3 h-full">
-              <div className="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <UpcomingExams data={upcomingExamsData} />
-              </div>
-
-              <div className="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <TodaysMeetings data={todaysMeetingsData} />
-              </div>
-
-              <div className="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                <RecentActivity data={recentActivityData} />
-              </div>
+            {/* Row 2: Engagement + Activity */}
+            <div className="lg:col-start-1 lg:row-start-2 bg-white rounded-lg border border-gray-200 shadow-sm">
+              <StudentEngagementTrends data={engagementTrendsData} />
+            </div>
+            <div className="lg:col-start-2 lg:row-start-2 bg-white rounded-lg border border-gray-200 shadow-sm">
+              <RecentActivity data={recentActivityData} />
             </div>
           </div>
         </div>
@@ -127,3 +174,5 @@ export default function HomePage() {
     </MainLayout>
   );
 }
+
+

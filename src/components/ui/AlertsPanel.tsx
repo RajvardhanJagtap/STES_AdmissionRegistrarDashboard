@@ -69,11 +69,11 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({ data }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-6 h-full">
       <div className="flex items-center justify-between mb-6">
-        <div className="border-l-4 pl-3" style={{ borderLeftColor: '#0A6E8A' }}>
+        <div className="border-l-4 pl-3" style={{ borderLeftColor: '#024698' }}>
           <h2 className="text-xl font-bold text-gray-900">Alerts & Notifications</h2>
         </div>
         {data.newCount > 0 && (
-          <span className="text-white text-xs font-bold px-2 py-1 rounded-full" style={{ backgroundColor: '#0A6E8A' }}>
+          <span className="text-white text-xs font-bold px-2 py-1 rounded-full" style={{ backgroundColor: '#024698' }}>
             {data.newCount} New
           </span>
         )}
@@ -120,3 +120,5 @@ const AlertsPanel: React.FC<AlertsPanelProps> = ({ data }) => {
 };
 
 export default AlertsPanel;
+
+

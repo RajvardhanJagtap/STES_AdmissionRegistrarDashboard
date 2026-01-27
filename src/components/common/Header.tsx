@@ -537,7 +537,7 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
                   name="email"
                   value={formData.email}
                   onChange={handleFormChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#0A6E8A] focus:ring-2 focus:ring-[#0A6E8A]/20 transition-colors"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#024698] focus:ring-2 focus:ring-[#024698]/20 transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -744,3 +744,5 @@ const Header: React.FC<HeaderProps> = ({ user: initialUser, onToggleSidebar }) =
 };
 
 export default Header;
+
+

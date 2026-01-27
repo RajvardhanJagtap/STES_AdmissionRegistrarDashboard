@@ -8,3 +8,5 @@ const AcademicProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ chil
 };
 
 export default AcademicProviderWrapper;
+
+

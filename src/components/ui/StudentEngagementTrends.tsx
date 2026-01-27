@@ -61,8 +61,8 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({
             className="flex items-center gap-1.5 px-2 py-1 rounded-md"
             style={{ backgroundColor: "#F0FDFA" }}
           >
-            <TrendingUp size={16} style={{ color: "#0A6E8A" }} />
-            <span className="label-text" style={{ color: "#0A6E8A" }}>
+            <TrendingUp size={16} style={{ color: "#024698" }} />
+            <span className="label-text" style={{ color: "#024698" }}>
               +{currentData.growth}%
             </span>
           </div>
@@ -77,7 +77,7 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({
                 ? "text-white shadow-md"
                 : "bg-transparent text-gray-600 hover:text-gray-900"
             }`}
-            style={view === "weekly" ? { backgroundColor: "#0A6E8A" } : {}}
+            style={view === "weekly" ? { backgroundColor: "#024698" } : {}}
           >
             WEEKLY
           </button>
@@ -88,7 +88,7 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({
                 ? "text-white shadow-md"
                 : "bg-transparent text-gray-600 hover:text-gray-900"
             }`}
-            style={view === "monthly" ? { backgroundColor: "#0A6E8A" } : {}}
+            style={view === "monthly" ? { backgroundColor: "#024698" } : {}}
           >
             MONTHLY
           </button>
@@ -141,7 +141,7 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({
             {/* Bars - TEAL */}
             <Bar
               dataKey="engagement"
-              fill="#0A6E8A"
+              fill="#024698"
               radius={[8, 8, 0, 0]}
               animationDuration={300}
               animationEasing="ease-out"
@@ -180,3 +180,5 @@ const StudentEngagementTrends: React.FC<StudentEngagementTrendsProps> = ({
 };
 
 export default StudentEngagementTrends;
+
+

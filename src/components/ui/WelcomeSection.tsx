@@ -27,13 +27,13 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
 
   return (
     <div className="w-full bg-gradient-to-r from-slate-50 via-blue-50/30 to-slate-50 backdrop-blur-sm">
-      <div className="px-6 py-4 sm:py-6">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
+      <div className="px-4 py-3 sm:py-4">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-1 leading-tight">
           <span className="text-gray-900">Hello,</span>{" "}
           <span className="text-gray-900">{userName}</span>
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-600 font-medium mb-0 leading-relaxed">
+        <p className="text-sm sm:text-base text-gray-600 font-medium mb-0 leading-relaxed max-w-4xl">
           Inspire minds, shape futures, and empower the next generation of
           leaders
         </p>
@@ -43,3 +43,5 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
 };
 
 export default WelcomeSection;
+
+
