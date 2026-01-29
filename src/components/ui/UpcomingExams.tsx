@@ -21,11 +21,9 @@ const UpcomingExams: React.FC<UpcomingExamsProps> = ({ data }) => (
         {data.exams.map((exam, index) => (
           <div
             key={exam.id}
-            className="rounded-lg border p-3 border-gray-200 flex items-center gap-3"
-            style={{
-              backgroundColor:
-                index % 2 === 0 ? "#E8F4F8" : "#F0F9FF",
-            }}
+            className={`rounded-lg border p-3 flex items-center gap-3 ${
+              index === 0 ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"
+            }`}
           >
             <div className="flex items-center gap-3 min-w-0 flex-1">
               {/* Date Display */}

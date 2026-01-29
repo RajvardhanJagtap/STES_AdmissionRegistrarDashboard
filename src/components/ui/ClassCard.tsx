@@ -23,23 +23,28 @@ const ClassCard: React.FC<ClassCardProps> = ({ session, index = 0 }) => {
     return "Later";
   };
 
-  const isNext = session.status === "ongoing";
+  const isHighlighted = index === 0;
 
   return (
     <div
-      className="rounded-lg border p-3 transition-all duration-200 border-gray-200"
-      style={{ backgroundColor: index % 2 === 0 ? "#E8F4F8" : "#F0F9FF" }}
+      className={`rounded-lg border p-3 transition-all duration-200 ${
+        isHighlighted ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"
+      }`}
     >
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0 flex-1">
           <div
             className={`text-sm font-medium truncate ${
-              isNext ? "text-[#026892]" : "text-gray-900"
+              isHighlighted ? "text-[#026892]" : "text-gray-900"
             }`}
           >
             {session.name}
           </div>
-          <div className={`text-xs truncate mt-1 ${isNext ? "text-[#026892]" : "text-gray-600"}`}>
+          <div
+            className={`text-xs truncate mt-1 ${
+              isHighlighted ? "text-[#026892]" : "text-gray-600"
+            }`}
+          >
             {session.location} <span className="mx-1">•</span> {session.time}
           </div>
         </div>
