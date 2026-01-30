@@ -11,7 +11,9 @@ type RecentGradesProps = {
 const RecentGrades: React.FC<RecentGradesProps> = ({ items }) => {
   return (
     <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Recent Grades</h2>
+      <h2 className="text-[19px] font-bold text-gray-900 mb-4">
+        Recent Grades
+      </h2>
 
       <div className="space-y-3">
         {items.map((item) => (

@@ -28,7 +28,9 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
   return (
     <div className="bg-white border border-gray-100 rounded-xl p-6 h-[280px] flex flex-col shadow-sm">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Financial Status</h2>
+        <h2 className="text-[19px] font-bold text-gray-900">
+          Financial Status
+        </h2>
         <button
           type="button"
           onClick={toggleVisibility}

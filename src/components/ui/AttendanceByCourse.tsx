@@ -21,7 +21,7 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
     { courseCode: "MATH202", attendancePercent: 70 },
     { courseCode: "ENG150", attendancePercent: 80 }, // Only one above 75%
     { courseCode: "PHY110", attendancePercent: 72 },
-    { courseCode: "HIST130", attendancePercent: 50 }
+    { courseCode: "HIST130", attendancePercent: 50 },
   ];
 
   const safeItems = mockData.map((item) => ({
@@ -30,19 +30,30 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
   }));
 
   const targetPercentage = 75;
-  const exceededCount = safeItems.filter(item => item.attendancePercent > targetPercentage).length;
-  const averageAttendance = safeItems.reduce((sum, item) => sum + item.attendancePercent, 0) / safeItems.length;
+  const exceededCount = safeItems.filter(
+    (item) => item.attendancePercent > targetPercentage,
+  ).length;
+  const averageAttendance =
+    safeItems.reduce((sum, item) => sum + item.attendancePercent, 0) /
+    safeItems.length;
+  const targetTop = `${100 - targetPercentage}%`;
 
   return (
     <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[400px] flex flex-col">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Attendance Overview</h2>
-          <p className="text-sm text-gray-500 mt-1">Course-wise attendance percentage</p>
+          <h2 className="text-[19px] font-bold text-gray-900">
+            Attendance Overview
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Course-wise attendance percentage
+          </p>
         </div>
         <div className="flex items-center gap-2 bg-green-50 px-3 py-1.5 rounded-full">
           <CheckCircle className="w-4 h-4 text-green-600" />
-          <span className="text-sm font-medium text-green-700">Target Exceeded (75%)</span>
+          <span className="text-sm font-medium text-green-700">
+            Target Exceeded (75%)
+          </span>
         </div>
       </div>
 
@@ -66,25 +77,33 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
             ))}
           </div>
 
-          {/* Target line at 75% position */}
-          <div className="absolute w-full top-1/4">
-            <div className="flex items-center">
-              <span className="text-xs font-medium text-green-600 mr-2 bg-gray-50 pr-1">Target 75%</span>
-              <div className="flex-1 border-t-2 border-dashed border-green-400"></div>
+          {/* Target line aligned to 75% gridline */}
+          <div
+            className="absolute inset-x-0 pointer-events-none"
+            style={{ top: targetTop }}
+          >
+            <div className="relative">
+              <div className="border-t-2 border-dashed border-green-400" />
+              <span className="absolute -top-2 left-0 text-xs font-medium text-green-600 bg-gray-50 pr-1">
+                Target {targetPercentage}%
+              </span>
             </div>
           </div>
 
           {/* Bars container */}
           <div className="absolute bottom-0 w-full flex items-end justify-center gap-6 h-full">
             {safeItems.map((item) => (
-              <div key={item.courseCode} className="flex flex-col items-center h-full">
+              <div
+                key={item.courseCode}
+                className="flex flex-col items-center h-full"
+              >
                 {/* Bar with correct height calculation */}
                 <div className="flex items-end h-full">
                   <div
                     className="w-12 bg-[#026892] rounded-t-md relative group cursor-pointer transition-colors hover:bg-[#024a73]"
                     style={{
                       height: `${(item.attendancePercent / 100) * 100}%`,
-                      minHeight: item.attendancePercent > 0 ? '4px' : '0px'
+                      minHeight: item.attendancePercent > 0 ? "4px" : "0px",
                     }}
                   >
                     {/* Hover tooltip */}
@@ -113,7 +132,11 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
       {/* Summary line */}
       <div className="mt-3 pt-3 border-t border-gray-100">
         <p className="text-sm text-gray-600 text-center">
-          Average attendance: <span className="font-semibold text-[#026892]">{averageAttendance.toFixed(1)}%</span> • {exceededCount} of {safeItems.length} courses above target
+          Average attendance:{" "}
+          <span className="font-semibold text-[#026892]">
+            {averageAttendance.toFixed(1)}%
+          </span>{" "}
+          • {exceededCount} of {safeItems.length} courses above target
         </p>
       </div>
     </div>

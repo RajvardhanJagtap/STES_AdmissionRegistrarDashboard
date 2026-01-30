@@ -29,8 +29,8 @@ const ClassCard: React.FC<ClassCardProps> = ({ session, index = 0 }) => {
     <div
       className={`rounded-xl p-4 transition-all duration-200 ${
         isHighlighted
-          ? "bg-blue-50"
-          : "bg-white"
+          ? "bg-blue-50 border border-blue-200"
+          : "bg-white border border-gray-200"
       }`}
     >
       <div className="flex items-center justify-between gap-3">

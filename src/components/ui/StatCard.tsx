@@ -38,20 +38,22 @@ const StatCard: React.FC<StatCardProps> = ({
     <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-[140px] flex flex-col">
       <div className="flex items-center justify-between gap-4 mb-4">
         <div className="min-w-0 flex-1">
-          <h3 className="text-sm font-medium text-gray-600 tracking-tight truncate">
+          <h3 className="text-[15px] font-bold text-gray-600 tracking-tight truncate">
             {title}
           </h3>
         </div>
 
         <div
-          className={`flex-shrink-0 h-10 w-10 rounded-lg ${iconStyle.bg} ${iconStyle.text} grid place-items-center`}
+          className={`flex-shrink-0 h-9 w-9 rounded-lg ${iconStyle.bg} ${iconStyle.text} grid place-items-center`}
         >
-          <span className="[&>svg]:h-5 [&>svg]:w-5">{icon}</span>
+          <span className="[&>svg]:h-[18px] [&>svg]:w-[18px]">{icon}</span>
         </div>
       </div>
 
       <div className="flex-1 flex flex-col justify-center">
-        <p className="text-2xl font-bold text-gray-900 leading-none mb-2">{value}</p>
+        <p className="text-2xl font-bold text-gray-900 leading-none mb-2">
+          {value}
+        </p>
 
         {change?.text && (
           <div

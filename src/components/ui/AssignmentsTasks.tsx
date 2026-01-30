@@ -11,7 +11,7 @@ type AssignmentsTasksProps = {
 const AssignmentsTasks: React.FC<AssignmentsTasksProps> = ({ items }) => {
   return (
     <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <h2 className="text-[19px] font-bold text-gray-900 mb-4">
         Assignments &amp; Tasks
       </h2>
 
@@ -45,9 +45,7 @@ const AssignmentsTasks: React.FC<AssignmentsTasksProps> = ({ items }) => {
               </div>
 
               <div className="min-w-0 flex-1">
-                <div
-                  className={`text-sm font-semibold truncate ${titleClass}`}
-                >
+                <div className={`text-sm font-semibold truncate ${titleClass}`}>
                   {item.title}
                 </div>
                 <div className={`text-sm truncate ${metaClass}`}>
