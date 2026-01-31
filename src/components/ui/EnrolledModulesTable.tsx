@@ -19,7 +19,7 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
   const totalCredits = items.reduce((sum, module) => sum + module.credits, 0);
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[400px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm flex flex-col">
       <div className="flex items-center justify-between mb-3">
         <div>
           <h2 className="text-[19px] font-bold text-gray-900">
@@ -35,9 +35,9 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto rounded-lg border border-gray-100">
+      <div className="rounded-lg border border-gray-100">
         <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-white">
+          <thead className="bg-white">
             <tr className="border-b border-gray-100">
               <th
                 scope="col"

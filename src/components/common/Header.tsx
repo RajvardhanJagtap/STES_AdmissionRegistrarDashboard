@@ -29,7 +29,7 @@ const TopBar: React.FC<HeaderProps> = ({ user }) => {
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
         {/* Left: Brand */}
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold text-[#026892] tracking-tight">
+          <h1 className="text-xl font-medium text-[#026892] tracking-tight">
             SAMPS UR
           </h1>
         </div>
@@ -65,7 +65,7 @@ const TopBar: React.FC<HeaderProps> = ({ user }) => {
               setSemester(value === "semester one" ? "Fall" : "Spring")
             }
           >
-            <SelectTrigger className="w-36 h-9 bg-white border-gray-200 text-sm font-medium capitalize">
+            <SelectTrigger className="w-36 h-9 bg-white border-gray-200 text-sm font-semibold capitalize whitespace-nowrap">
               <SelectValue placeholder="semester one" />
             </SelectTrigger>
             <SelectContent className="bg-white border border-gray-200 shadow-md z-50">
@@ -74,17 +74,20 @@ const TopBar: React.FC<HeaderProps> = ({ user }) => {
             </SelectContent>
           </Select>
 
-          {/* User Selector */}
-          <Select value={username} onValueChange={() => {}}>
-            <SelectTrigger className="w-32 h-9 bg-white border-gray-200 text-sm font-medium">
-              <SelectValue placeholder="john.doe" />
-            </SelectTrigger>
-            <SelectContent className="bg-white border border-gray-200 shadow-md z-50">
-              <SelectItem value={username}>{username}</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Avatar name={user?.name || "John"} size="md" />
+          {/* User Profile Dropdown */}
+          <div className="flex items-center gap-2">
+            <Select value={username} onValueChange={() => {}}>
+              <SelectTrigger className="w-auto h-9 bg-white border-gray-200 text-sm font-medium">
+                <div className="flex items-center gap-2">
+                  <SelectValue placeholder="john.doe" />
+                  <Avatar name={user?.name || "John"} size="sm" />
+                </div>
+              </SelectTrigger>
+              <SelectContent className="bg-white border border-gray-200 shadow-md z-50">
+                <SelectItem value={username}>{username}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
     </div>

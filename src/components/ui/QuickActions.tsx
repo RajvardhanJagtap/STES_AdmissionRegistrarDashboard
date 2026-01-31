@@ -53,21 +53,21 @@ const QuickActions: React.FC = () => {
     switch (variant) {
       case "green":
         return {
-          bg: "bg-green-50",
+          bg: "bg-blue-50",
           icon: "text-green-600",
-          text: "text-green-700",
+          text: "text-green-800",
         };
       case "orange":
         return {
-          bg: "bg-orange-50",
+          bg: "bg-orange-100",
           icon: "text-orange-600",
-          text: "text-orange-700",
+          text: "text-orange-800",
         };
       default:
         return {
           bg: "bg-blue-50",
-          icon: "text-blue-600",
-          text: "text-blue-700",
+          icon: "text-[#026892]",
+          text: "text-[#026892]",
         };
     }
   };
@@ -85,7 +85,7 @@ const QuickActions: React.FC = () => {
           return (
             <Link key={action.id} href={action.href} className="block">
               <div
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl ${styles.bg} hover:shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#026892]/20`}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg ${styles.bg} hover:shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#026892]/20`}
               >
                 <div className={`flex-shrink-0 ${styles.icon}`}>
                   <span className="[&>svg]:h-5 [&>svg]:w-5">{action.icon}</span>
