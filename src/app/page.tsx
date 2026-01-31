@@ -50,9 +50,9 @@ export default function HomePage() {
             <div className="lg:col-span-2 grid grid-cols-1 xl:grid-cols-2 gap-3">
               <TodayClasses data={studentTodayClasses} />
               <FinancialStatus
-                semesterFeesMasked={studentFinance.semesterFeesMasked}
-                paidMasked={studentFinance.paidMasked}
-                remainingMasked={studentFinance.remainingMasked}
+                semesterFees={studentFinance.semesterFees}
+                paid={studentFinance.paid}
+                remaining={studentFinance.remaining}
                 paidProgress={studentFinance.paidProgress}
                 nextPaymentDue={studentFinance.nextPaymentDue}
               />

@@ -1,7 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+  ReferenceLine,
+} from "recharts";
 
 export type AttendanceByCourseItem = {
   courseCode: string;
@@ -13,8 +23,15 @@ type AttendanceByCourseProps = {
 };
 
 const clampPercent = (value: number) => Math.max(0, Math.min(100, value));
+const BRAND_BLUE = "#026892";
 
 const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Mock data with specified percentages
   const mockData = [
     { courseCode: "CS101", attendancePercent: 60 },
@@ -36,10 +53,14 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
   const averageAttendance =
     safeItems.reduce((sum, item) => sum + item.attendancePercent, 0) /
     safeItems.length;
-  const targetTop = `${100 - targetPercentage}%`;
+
+  const chartData = safeItems.map((item) => ({
+    name: item.courseCode,
+    value: item.attendancePercent,
+  }));
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[400px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[460px] flex flex-col">
       <div className="flex items-start justify-between mb-4">
         <div>
           <h2 className="text-[19px] font-bold text-gray-900">
@@ -57,76 +78,60 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
         </div>
       </div>
 
-      {/* Chart container with background */}
-      <div className="flex bg-gray-50 rounded-lg p-4">
-        {/* Y-axis labels */}
-        <div className="flex flex-col justify-between text-xs text-gray-500 pr-3 h-48">
-          <span>100%</span>
-          <span>75%</span>
-          <span>50%</span>
-          <span>25%</span>
-          <span>0%</span>
-        </div>
-
-        {/* Chart area */}
-        <div className="flex-1 relative h-48">
-          {/* Grid lines */}
-          <div className="absolute inset-0 flex flex-col justify-between">
-            {[100, 75, 50, 25, 0].map((value) => (
-              <div key={value} className="h-px bg-gray-200" />
-            ))}
-          </div>
-
-          {/* Target line aligned to 75% gridline */}
-          <div
-            className="absolute inset-x-0 pointer-events-none"
-            style={{ top: targetTop }}
+      {/* Chart */}
+      <div className="mt-4 h-72 w-full min-w-0">
+        {isMounted ? (
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth={0}
+            minHeight={288}
           >
-            <div className="relative">
-              <div className="border-t-2 border-dashed border-green-400" />
-              <span className="absolute -top-2 left-0 text-xs font-medium text-green-600 bg-gray-50 pr-1">
-                Target {targetPercentage}%
-              </span>
-            </div>
-          </div>
-
-          {/* Bars container */}
-          <div className="absolute bottom-0 w-full flex items-end justify-center gap-6 h-full">
-            {safeItems.map((item) => (
-              <div
-                key={item.courseCode}
-                className="flex flex-col items-center h-full"
-              >
-                {/* Bar with correct height calculation */}
-                <div className="flex items-end h-full">
-                  <div
-                    className="w-12 bg-[#026892] rounded-t-md relative group cursor-pointer transition-colors hover:bg-[#024a73]"
-                    style={{
-                      height: `${(item.attendancePercent / 100) * 100}%`,
-                      minHeight: item.attendancePercent > 0 ? "4px" : "0px",
-                    }}
-                  >
-                    {/* Hover tooltip */}
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                      {item.attendancePercent}%
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Course codes below chart */}
-      <div className="flex justify-center gap-6 mt-2 ml-12">
-        {safeItems.map((item) => (
-          <div key={item.courseCode} className="w-12 text-center">
-            <div className="text-xs font-medium text-gray-700">
-              {item.courseCode}
-            </div>
-          </div>
-        ))}
+            <BarChart
+              data={chartData}
+              margin={{ top: 10, right: 16, left: 0, bottom: 40 }}
+            >
+              <CartesianGrid stroke="#e5e7eb" strokeDasharray="5 5" />
+              <YAxis
+                domain={[0, 100]}
+                ticks={[0, 25, 50, 75, 100]}
+                tick={{ fontSize: 12, fill: "#6b7280" }}
+                axisLine={{ stroke: "#9ca3af" }}
+                tickLine={{ stroke: "#9ca3af" }}
+              />
+              <XAxis
+                dataKey="name"
+                interval={0}
+                tick={{ fontSize: 12, fill: "#6b7280" }}
+                angle={-35}
+                textAnchor="end"
+                height={50}
+                axisLine={{ stroke: "#9ca3af" }}
+                tickLine={{ stroke: "#9ca3af" }}
+              />
+              <Tooltip
+                formatter={(value: number) => [`${value}%`, "Attendance"]}
+                contentStyle={{
+                  borderRadius: 8,
+                  border: "1px solid #e5e7eb",
+                }}
+              />
+              <ReferenceLine
+                y={targetPercentage}
+                stroke="#34d399"
+                strokeDasharray="6 6"
+              />
+              <Bar
+                dataKey="value"
+                fill={BRAND_BLUE}
+                radius={[6, 6, 0, 0]}
+                barSize={44}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="h-full w-full" />
+        )}
       </div>
 
       {/* Summary line */}

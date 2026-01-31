@@ -165,9 +165,9 @@ export const studentEnrolledModules = [
 ];
 
 export const studentFinance = {
-  semesterFeesMasked: "RWF ******",
-  paidMasked: "RWF ******",
-  remainingMasked: "RWF ******",
-  paidProgress: 0.78,
+  semesterFees: 1200000,
+  paid: 936000,
+  remaining: 264000,
+  paidProgress: 936000 / 1200000,
   nextPaymentDue: "May 15, 2025",
 };

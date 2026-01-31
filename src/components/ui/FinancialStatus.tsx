@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import { EyeOff, Eye, CreditCard } from "lucide-react";
+import { formatRwfNumber } from "@/utils/helpers";
 
 type FinancialStatusProps = {
-  semesterFees: string;
-  paid: string;
-  remaining: string;
+  semesterFees: number;
+  paid: number;
+  remaining: number;
   paidProgress: number; // 0..1
   nextPaymentDue: string;
 };
@@ -48,15 +49,21 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
       <div className="space-y-3 flex-1">
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-700 font-medium">Semester Fees</span>
-          <span className="text-gray-900 font-semibold">
-            {isVisible ? semesterFees : "RWF ******"}
+          <span className="text-gray-900 font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+            <span className="shrink-0">RWF</span>
+            <span className="text-right">
+              {isVisible ? formatRwfNumber(semesterFees) : "******"}
+            </span>
           </span>
         </div>
 
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-700 font-medium">Paid</span>
-          <span className="text-[#026892] font-semibold">
-            {isVisible ? paid : "RWF ******"}
+          <span className="text-[#026892] font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+            <span className="shrink-0">RWF</span>
+            <span className="text-right">
+              {isVisible ? formatRwfNumber(paid) : "******"}
+            </span>
           </span>
         </div>
 
@@ -72,8 +79,11 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
 
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-700 font-medium">Remaining</span>
-          <span className="text-orange-600 font-semibold">
-            {isVisible ? remaining : "RWF ******"}
+          <span className="text-orange-600 font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+            <span className="shrink-0">RWF</span>
+            <span className="text-right">
+              {isVisible ? formatRwfNumber(remaining) : "******"}
+            </span>
           </span>
         </div>
 
@@ -85,10 +95,10 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
 
       <button
         type="button"
-        className="mt-3 w-full h-10 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.99] transition text-sm"
+        className="mt-3 w-full h-14 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.99] transition text-base"
         style={{ backgroundColor: BRAND_BLUE }}
       >
-        <CreditCard className="w-4 h-4" />
+        <CreditCard className="w-5 h-5" />
         Make Payment
       </button>
     </div>
