@@ -16,8 +16,8 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
   items,
 }) => {
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
-      <h2 className="text-[19px] font-bold text-gray-900 mb-4">
+    <div className="bg-white border border-gray-100 rounded-xl px-6 pt-6 pb-2 shadow-sm">
+      <h2 className="text-[19px] font-bold text-gray-900 mb-3">
         Assigned Modules
       </h2>
 

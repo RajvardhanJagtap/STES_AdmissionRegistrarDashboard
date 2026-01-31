@@ -124,7 +124,7 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
               <Bar
                 dataKey="value"
                 fill={BRAND_BLUE}
-                radius={[6, 6, 0, 0]}
+                radius={[0, 0, 0, 0]}
                 barSize={44}
               />
             </BarChart>

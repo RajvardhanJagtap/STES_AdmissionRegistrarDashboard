@@ -95,7 +95,7 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
 
       <button
         type="button"
-        className="mt-3 w-full h-14 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.99] transition text-base"
+        className="mt-3 w-full h-20 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-95 active:scale-[0.99] transition text-base px-6"
         style={{ backgroundColor: BRAND_BLUE }}
       >
         <CreditCard className="w-5 h-5" />
