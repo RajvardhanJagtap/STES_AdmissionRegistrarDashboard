@@ -24,7 +24,7 @@ import {
 export default function HomePage() {
   return (
     <MainLayout>
-      <div className="w-full min-h-screen bg-white pt-12">
+      <div className="w-full min-h-screen bg-white">
         <WelcomeSection userName={currentUser.name} />
 
         {/* Stats */}

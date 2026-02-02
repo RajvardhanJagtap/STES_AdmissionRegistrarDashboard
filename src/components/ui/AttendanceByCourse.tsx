@@ -32,16 +32,18 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
     setIsMounted(true);
   }, []);
 
-  // Mock data with specified percentages
-  const mockData = [
+  // Fallback mock data (used only if items is empty)
+  const mockData: AttendanceByCourseItem[] = [
     { courseCode: "CS101", attendancePercent: 60 },
     { courseCode: "MATH202", attendancePercent: 70 },
-    { courseCode: "ENG150", attendancePercent: 80 }, // Only one above 75%
+    { courseCode: "ENG150", attendancePercent: 80 },
     { courseCode: "PHY110", attendancePercent: 72 },
     { courseCode: "HIST130", attendancePercent: 50 },
   ];
 
-  const safeItems = mockData.map((item) => ({
+  const sourceItems = items.length ? items : mockData;
+
+  const safeItems = sourceItems.map((item) => ({
     ...item,
     attendancePercent: clampPercent(item.attendancePercent),
   }));
@@ -60,7 +62,7 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
   }));
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[460px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-auto sm:h-[460px] flex flex-col">
       <div className="flex items-start justify-between mb-4">
         <div>
           <h2 className="text-[19px] font-bold text-gray-900">
@@ -70,7 +72,7 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
             Course-wise attendance percentage
           </p>
         </div>
-        <div className="flex items-center gap-2 bg-green-50 px-3 py-1.5 rounded-full">
+        <div className="hidden sm:flex items-center gap-2 bg-green-50 px-3 py-1.5 rounded-full">
           <CheckCircle className="w-4 h-4 text-green-600" />
           <span className="text-sm font-medium text-green-700">
             Target Exceeded (75%)
@@ -79,13 +81,13 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
       </div>
 
       {/* Chart */}
-      <div className="mt-4 h-72 w-full min-w-0">
+      <div className="mt-4 h-56 sm:h-72 w-full min-w-0">
         {isMounted ? (
           <ResponsiveContainer
             width="100%"
             height="100%"
             minWidth={0}
-            minHeight={288}
+            minHeight={224}
           >
             <BarChart
               data={chartData}
@@ -125,7 +127,7 @@ const AttendanceByCourse: React.FC<AttendanceByCourseProps> = ({ items }) => {
                 dataKey="value"
                 fill={BRAND_BLUE}
                 radius={[0, 0, 0, 0]}
-                barSize={44}
+                barSize={36}
               />
             </BarChart>
           </ResponsiveContainer>

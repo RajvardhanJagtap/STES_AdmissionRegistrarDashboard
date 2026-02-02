@@ -18,11 +18,11 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
   const totalCredits = items.reduce((sum, module) => sum + module.credits, 0);
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-[460px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm h-auto sm:h-[460px] flex flex-col">
       <div className="flex items-start justify-between mb-4">
         <div>
           <h2 className="text-[19px] font-bold text-gray-900">
-            Assigned Modules
+            Current Enrolled Modules
           </h2>
           <p className="text-sm text-gray-500 mt-1 mb-4">
             Your enrolled courses for this semester
@@ -33,7 +33,8 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
 
       <div className="flex-1 overflow-hidden">
         <div className="overflow-y-auto h-full">
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[520px]">
             <thead className="sticky top-0 bg-white">
               <tr className="bg-gray-50 border-b border-gray-200">
                 <th
@@ -73,14 +74,17 @@ const EnrolledModulesTable: React.FC<EnrolledModulesTableProps> = ({
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
 
       <div className="mt-3 pt-3 border-t border-gray-100">
         <p className="text-sm text-gray-600 text-center">
-          Total modules: <span className="font-semibold text-[#026892]">{items.length}</span>
-          {" "} • Total credits: <span className="font-semibold text-[#026892]">{totalCredits}</span>
+          Total modules:{" "}
+          <span className="font-semibold text-[#026892]">{items.length}</span> •
+          Total credits:{" "}
+          <span className="font-semibold text-[#026892]">{totalCredits}</span>
         </p>
       </div>
     </div>

@@ -28,7 +28,7 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 h-[300px] flex flex-col shadow-sm">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 h-auto sm:h-[300px] flex flex-col shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-[19px] font-bold text-gray-900">
           Financial Status
@@ -48,9 +48,9 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
       </div>
 
       <div className="space-y-3 flex-1">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm gap-3">
           <span className="text-gray-700 font-medium">Semester Fees</span>
-          <span className="text-gray-900 font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+          <span className="text-gray-900 font-semibold tabular-nums w-auto sm:w-[140px] flex items-center justify-end gap-1">
             <span className="shrink-0">RWF</span>
             <span className="text-right">
               {isVisible ? formatRwfNumber(semesterFees) : "******"}
@@ -58,9 +58,9 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
           </span>
         </div>
 
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm gap-3">
           <span className="text-gray-700 font-medium">Paid</span>
-          <span className="text-[#026892] font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+          <span className="text-[#026892] font-semibold tabular-nums w-auto sm:w-[140px] flex items-center justify-end gap-1">
             <span className="shrink-0">RWF</span>
             <span className="text-right">
               {isVisible ? formatRwfNumber(paid) : "******"}
@@ -78,9 +78,9 @@ const FinancialStatus: React.FC<FinancialStatusProps> = ({
           />
         </div>
 
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm gap-3">
           <span className="text-gray-700 font-medium">Remaining</span>
-          <span className="text-orange-600 font-semibold tabular-nums w-[140px] flex items-center justify-end gap-1">
+          <span className="text-orange-600 font-semibold tabular-nums w-auto sm:w-[140px] flex items-center justify-end gap-1">
             <span className="shrink-0">RWF</span>
             <span className="text-right">
               {isVisible ? formatRwfNumber(remaining) : "******"}

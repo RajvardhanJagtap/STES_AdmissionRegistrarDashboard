@@ -12,9 +12,7 @@ import {
   LifeBuoy,
   FileText,
   User,
-  Menu,
 } from "lucide-react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -64,7 +62,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-x-0 top-16 bottom-0 bg-black/50 z-40 lg:hidden"
           onClick={onToggle}
         />
       )}
@@ -72,24 +70,12 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-40 transition-transform duration-300 lg:translate-x-0",
+          "fixed top-16 left-0 h-[calc(100vh-64px)] w-64 bg-white border-r border-gray-200 z-40 transition-transform duration-300 lg:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        {/* Logo */}
-        <div className="h-16 flex items-center justify-center">
-          <Image
-            src="/images/ur-logo.jpeg"
-            alt="UR"
-            width={44}
-            height={44}
-            className="rounded-full"
-            priority
-          />
-        </div>
-
         {/* Navigation */}
-        <nav className="p-4 space-y-1">
+        <nav className="p-4 space-y-1 h-full overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = item.id === activeId;
@@ -99,6 +85,9 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
               <Link
                 key={item.id}
                 href={item.href || "/"}
+                onClick={() => {
+                  if (isOpen) onToggle();
+                }}
                 className={cn(
                   "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-colors",
                   isActive
@@ -116,14 +105,6 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
           })}
         </nav>
       </aside>
-
-      {/* Mobile Toggle */}
-      <button
-        onClick={onToggle}
-        className="fixed top-20 left-4 z-30 p-2 bg-white rounded-lg shadow border border-gray-200 lg:hidden"
-      >
-        <Menu className="w-5 h-5 text-gray-900" />
-      </button>
     </>
   );
 };

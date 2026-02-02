@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -11,12 +11,14 @@ import {
 import Avatar from "@/components/ui/Avatar";
 import { User } from "@/types";
 import { useAcademicContext } from "@/contexts/AcademicContext";
+import Image from "next/image";
 
 interface HeaderProps {
   user?: User;
+  onToggleSidebar?: () => void;
 }
 
-const TopBar: React.FC<HeaderProps> = ({ user }) => {
+const TopBar: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
   const { academicYear, semester, setAcademicYear, setSemester } =
     useAcademicContext();
 
@@ -27,26 +29,48 @@ const TopBar: React.FC<HeaderProps> = ({ user }) => {
     <header className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="flex h-16">
         {/* LEFT: Sidebar-aligned logo column */}
-        <div className="w-64 flex items-center justify-center border-r border-gray-100">
-          <img
+        <div className="hidden lg:flex w-64 items-center justify-center border-r border-gray-100">
+          <Image
             src="/images/ur-logo.jpeg"
             alt="UR Logo"
             width={48}
             height={48}
             className="rounded-full"
+            priority
           />
         </div>
 
         {/* RIGHT: Main header area */}
-        <div className="flex flex-1 items-center justify-between px-6">
-          {/* Brand text */}
-          <h1 className="text-[20px] font-medium tracking-normal text-[#026892]">
-  SAMPS UR
-</h1>
+        <div className="flex flex-1 items-center justify-between px-4 sm:px-6 min-w-0">
+          {/* Brand + mobile menu */}
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              type="button"
+              onClick={onToggleSidebar}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5 text-gray-700" />
+            </button>
 
+            <div className="lg:hidden">
+              <Image
+                src="/images/ur-logo.jpeg"
+                alt="UR Logo"
+                width={36}
+                height={36}
+                className="rounded-full"
+                priority
+              />
+            </div>
+
+            <h1 className="text-[18px] sm:text-[20px] font-medium tracking-normal text-[#026892] truncate">
+              SAMPS UR
+            </h1>
+          </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             {/* Notifications */}
             <button className="relative p-2 rounded-md hover:bg-gray-100">
               <Bell className="w-5 h-5 text-gray-600" />
@@ -56,37 +80,43 @@ const TopBar: React.FC<HeaderProps> = ({ user }) => {
             </button>
 
             {/* Academic Year */}
-            <Select value={academicYear} onValueChange={setAcademicYear}>
-              <SelectTrigger className="h-9 w-[130px] border-gray-200 text-sm font-medium">
-                <SelectValue placeholder="2024-2025" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="2024-2025">2024-2025</SelectItem>
-                <SelectItem value="2025-2026">2025-2026</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="hidden md:block">
+              <Select value={academicYear} onValueChange={setAcademicYear}>
+                <SelectTrigger className="h-9 w-[120px] lg:w-[130px] border-gray-200 text-sm font-medium">
+                  <SelectValue placeholder="2024-2025" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2024-2025">2024-2025</SelectItem>
+                  <SelectItem value="2025-2026">2025-2026</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
             {/* Semester */}
-            <Select
-              value={semesterLabel}
-              onValueChange={(value) =>
-                setSemester(value === "semester one" ? "Fall" : "Spring")
-              }
-            >
-              <SelectTrigger className="h-9 w-[150px] border-gray-200 text-sm font-medium capitalize">
-                <SelectValue placeholder="semester one" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="semester one">semester one</SelectItem>
-                <SelectItem value="semester two">semester two</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="hidden md:block">
+              <Select
+                value={semesterLabel}
+                onValueChange={(value) =>
+                  setSemester(value === "semester one" ? "Fall" : "Spring")
+                }
+              >
+                <SelectTrigger className="h-9 w-[130px] lg:w-[150px] border-gray-200 text-sm font-medium capitalize">
+                  <SelectValue placeholder="semester one" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="semester one">semester one</SelectItem>
+                  <SelectItem value="semester two">semester two</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
             {/* User */}
             <Select value={username} onValueChange={() => {}}>
-              <SelectTrigger className="h-9 border-gray-200 text-sm font-medium px-3">
-                <div className="flex items-center gap-2">
-                  <SelectValue placeholder="john.doe" />
+              <SelectTrigger className="h-9 border-gray-200 text-sm font-medium px-2 sm:px-3 max-w-[180px]">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="hidden sm:block truncate">
+                    <SelectValue placeholder="john.doe" />
+                  </span>
                   <Avatar name={user?.name || "John"} size="sm" />
                 </div>
               </SelectTrigger>

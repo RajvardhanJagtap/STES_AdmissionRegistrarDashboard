@@ -35,7 +35,7 @@ const StatCard: React.FC<StatCardProps> = ({
   const iconStyle = getIconBgColor(iconColor);
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-[140px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-auto sm:h-[140px] flex flex-col">
       <div className="flex items-center justify-between gap-4 mb-4">
         <div className="min-w-0 flex-1">
           <h3 className="text-[15px] font-bold text-gray-600 tracking-tight truncate">
