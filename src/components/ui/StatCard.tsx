@@ -51,7 +51,7 @@ const StatCard: React.FC<StatCardProps> = ({
       </div>
 
       <div className="flex-1 flex flex-col justify-center">
-        <p className="text-2xl font-bold text-gray-900 leading-none mb-2">
+        <p className="text-xl font-bold text-gray-900 leading-none mb-2">
           {value}
         </p>
 

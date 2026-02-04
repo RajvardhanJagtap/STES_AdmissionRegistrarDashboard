@@ -28,8 +28,8 @@ export const principalDashboardStats: StatCard[] = [
     icon: React.createElement(GraduationCap),
     iconColor: "green",
     change: {
-      text: "Enrollment-to-Faculty Ratio: 17:1",
-      variant: "neutral",
+      text: "Student-Faculty Ratio: 17:1",
+      variant: "positive",
     },
   },
   {
@@ -80,7 +80,7 @@ export const collegePerformanceBySchools: SchoolPerformance[] = [
   },
   {
     id: "s3",
-    school: "School of Education",
+    school: "School of Medicine",
     enrollment: 403,
     passRate: 90.1,
     avgGpa: 3.27,

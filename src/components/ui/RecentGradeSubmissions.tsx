@@ -23,7 +23,7 @@ const RecentGradeSubmissions: React.FC = () => {
       year: "Year 3",
       progress: 92,
       modules: "12/13",
-      status: "Pending Review" as const,
+      status: "Reviewed" as const,
     },
     {
       group: "LAW LEVEL 2",
@@ -41,7 +41,7 @@ const RecentGradeSubmissions: React.FC = () => {
       case "In Progress":
         return "bg-orange-100 text-orange-700";
       case "Pending Review":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-blue-100 text-blue-700";
       default:
         return "bg-slate-100 text-slate-700";
     }

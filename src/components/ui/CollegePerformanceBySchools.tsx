@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowDownRight, ArrowUpRight, Building2 } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { useAcademicContext } from "@/contexts/AcademicContext";
 import { collegePerformanceBySchools } from "@/data/principalDashboard.mock";
 
@@ -25,12 +25,6 @@ const CollegePerformanceBySchools: React.FC = () => {
           </h2>
           <div className="text-sm text-gray-600 mt-1 truncate">
             {academicYear} <span className="mx-1">•</span> {semLabel} overview
-          </div>
-        </div>
-
-        <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
-          <div className="h-9 w-9 rounded-lg bg-gray-100 text-gray-700 grid place-items-center">
-            <Building2 className="w-5 h-5" />
           </div>
         </div>
       </div>

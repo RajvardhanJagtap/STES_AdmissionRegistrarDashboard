@@ -23,7 +23,7 @@ const NewRegisteredStudents: React.FC = () => {
 
       <div className="mt-6 flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <div className="text-4xl font-bold text-[#026892] leading-none">
+          <div className="text-3xl font-bold text-[#026892] leading-none">
             487
           </div>
           <p className="text-sm text-gray-600 mt-2">Total new registrations</p>
