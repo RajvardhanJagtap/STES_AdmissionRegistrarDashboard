@@ -32,27 +32,6 @@ const RecentGradeSubmissions: React.FC = () => {
       modules: "10/13",
       status: "In Progress" as const,
     },
-    {
-      group: "NUR LEVEL 1",
-      year: "Year 1",
-      progress: 96,
-      modules: "12/13",
-      status: "Reviewed" as const,
-    },
-    {
-      group: "EEE LEVEL 2",
-      year: "Year 2",
-      progress: 68,
-      modules: "9/13",
-      status: "In Progress" as const,
-    },
-    {
-      group: "ECO LEVEL 1",
-      year: "Year 1",
-      progress: 90,
-      modules: "12/13",
-      status: "Pending Review" as const,
-    },
   ];
 
   const getStatusPill = (status: (typeof rows)[number]["status"]) => {
