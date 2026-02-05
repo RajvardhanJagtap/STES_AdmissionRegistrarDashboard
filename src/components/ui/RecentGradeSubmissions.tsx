@@ -56,7 +56,7 @@ const RecentGradeSubmissions: React.FC = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm h-full flex flex-col">
+    <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 shadow-sm h-full flex flex-col">
       <div>
         <h2 className="text-[18px] font-bold text-gray-900 leading-tight">
           Recent Grade Submissions
@@ -65,23 +65,23 @@ const RecentGradeSubmissions: React.FC = () => {
       </div>
 
       <div className="mt-3 border border-gray-200 rounded-xl overflow-hidden flex-1">
-        <div className="w-full">
-          <table className="w-full text-sm">
+        <div className="w-full overflow-x-auto scrollbar-hide">
+          <table className="w-full min-w-[560px] text-sm">
             <thead className="bg-gray-50">
               <tr className="border-b border-gray-200">
-                <th className="text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
+                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
                   Group
                 </th>
-                <th className="hidden sm:table-cell text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   Year
                 </th>
-                <th className="text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
+                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
                   Completion
                 </th>
-                <th className="hidden md:table-cell text-right text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 pl-1 sm:pl-2 pr-2 sm:pr-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   Modules
                 </th>
-                <th className="text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
+                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
                   Status
                 </th>
               </tr>
@@ -89,15 +89,15 @@ const RecentGradeSubmissions: React.FC = () => {
             <tbody className="divide-y divide-gray-200">
               {rows.map((row) => (
                 <tr key={row.group} className="hover:bg-gray-50">
-                  <td className="px-3 py-3.5 font-semibold text-gray-900 whitespace-normal break-normal">
+                  <td className="px-2 sm:px-3 py-3 font-semibold text-gray-900 whitespace-normal break-normal">
                     {row.group}
                   </td>
-                  <td className="hidden sm:table-cell px-3 py-3.5 text-gray-700 whitespace-nowrap">
+                  <td className="px-2 sm:px-3 py-3 text-gray-700 whitespace-nowrap">
                     {row.year}
                   </td>
-                  <td className="px-3 py-3.5">
+                  <td className="px-2 sm:px-3 py-3">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-2 w-24 sm:w-28 rounded-full bg-gray-200 overflow-hidden">
+                      <div className="h-2 w-20 sm:w-28 rounded-full bg-gray-200 overflow-hidden">
                         <div
                           className="h-full rounded-full bg-[#026892]"
                           style={{ width: `${row.progress}%` }}
@@ -108,10 +108,10 @@ const RecentGradeSubmissions: React.FC = () => {
                       </span>
                     </div>
                   </td>
-                  <td className="hidden md:table-cell px-3 py-3.5 text-right font-semibold text-gray-900 whitespace-nowrap tabular-nums">
+                  <td className="pl-1 sm:pl-2 pr-2 sm:pr-3 py-3 text-left font-semibold text-gray-900 whitespace-nowrap tabular-nums">
                     {row.modules}
                   </td>
-                  <td className="px-3 py-3.5 whitespace-nowrap">
+                  <td className="px-2 sm:px-3 py-3 whitespace-nowrap">
                     <span
                       className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ${getStatusPill(row.status)}`}
                     >

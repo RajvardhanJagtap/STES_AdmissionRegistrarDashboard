@@ -1,7 +1,6 @@
 import React from "react";
 import type { StatCard } from "@/types";
 import {
-  BadgeCheck,
   ClipboardCheck,
   GraduationCap,
   TrendingUp,

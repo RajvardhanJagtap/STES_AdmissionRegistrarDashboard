@@ -44,37 +44,24 @@ const QuickActions: React.FC = () => {
     },
   ];
 
-  const getItemStyles = (variant: QuickAction["variant"]) => {
-    switch (variant) {
-      case "purple":
-        return {
-          bg: "bg-purple-50",
-          icon: "text-purple-500",
-          text: "text-purple-700",
-          ring: "focus-visible:ring-purple-600/20",
-        };
-      case "green":
-        return {
-          bg: "bg-emerald-50",
-          icon: "text-emerald-500",
-          text: "text-emerald-700",
-          ring: "focus-visible:ring-emerald-600/20",
-        };
-      case "orange":
-        return {
-          bg: "bg-orange-50",
-          icon: "text-orange-500",
-          text: "text-orange-800",
-          ring: "focus-visible:ring-orange-600/20",
-        };
-      default:
-        return {
-          bg: "bg-blue-50",
-          icon: "text-blue-500",
-          text: "text-blue-700",
-          ring: "focus-visible:ring-blue-600/20",
-        };
+  const getItemStyles = (isEmphasis: boolean) => {
+    if (isEmphasis) {
+      return {
+        bg: "bg-[#FFF4EC] border border-[#FFE2CF]",
+        icon: "text-orange-600",
+        text: "text-orange-700",
+        ring: "focus-visible:ring-orange-600/20",
+        hover: "hover:bg-[#FFEFE4]",
+      };
     }
+
+    return {
+      bg: "bg-[#EEF6FF] border border-[#DCEBFF]",
+      icon: "text-sky-700",
+      text: "text-sky-700",
+      ring: "focus-visible:ring-sky-600/20",
+      hover: "hover:bg-[#E7F1FF]",
+    };
   };
 
   return (
@@ -83,13 +70,14 @@ const QuickActions: React.FC = () => {
         Quick Actions
       </h2>
       <div className="flex flex-col flex-1 gap-2">
-        {actions.map((action) => {
-          const styles = getItemStyles(action.variant);
+        {actions.map((action, index) => {
+          const isEmphasis = index === actions.length - 1;
+          const styles = getItemStyles(isEmphasis);
 
           return (
             <Link key={action.id} href={action.href} className="block">
               <div
-                className={`flex items-center gap-3 px-3.5 py-3 rounded-xl ${styles.bg} hover:brightness-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 ${styles.ring}`}
+                className={`flex items-center gap-3 px-3.5 py-3 rounded-xl ${styles.bg} ${styles.hover} transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 ${styles.ring}`}
               >
                 <div className={`flex-shrink-0 ${styles.icon}`}>
                   <span className="[&>svg]:h-5 [&>svg]:w-5">{action.icon}</span>
