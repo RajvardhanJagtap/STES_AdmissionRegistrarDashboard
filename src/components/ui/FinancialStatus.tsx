@@ -5,7 +5,7 @@ import { Activity, GraduationCap } from "lucide-react";
 
 const FinancialStatus: React.FC = () => {
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-5 h-auto sm:h-[280px] flex flex-col shadow-sm">
+    <div className="bg-white border border-gray-100 rounded-xl p-5 h-auto sm:h-[300px] flex flex-col shadow-sm">
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0 h-9 w-9 rounded-lg bg-blue-50 text-blue-600 grid place-items-center">
           <GraduationCap className="h-[18px] w-[18px]" />

@@ -120,16 +120,6 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
 
         {/* Desktop actions + user (keep existing order) */}
         <div className="hidden md:flex items-center gap-3 sm:gap-4 flex-shrink-0">
-          <button
-            className="relative p-2 rounded-md hover:bg-gray-100"
-            aria-label="Notifications"
-          >
-            <Bell className="w-5 h-5 text-gray-600" />
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-semibold">
-              5
-            </span>
-          </button>
-
           <Select value={academicYear} onValueChange={setAcademicYear}>
             <SelectTrigger className="h-9 w-[120px] lg:w-[130px] border-gray-200 text-sm font-medium">
               <SelectValue placeholder="2024-2025" />
@@ -154,6 +144,16 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
               <SelectItem value="semester two">semester two</SelectItem>
             </SelectContent>
           </Select>
+
+          <button
+            className="relative p-2 rounded-md hover:bg-gray-100"
+            aria-label="Notifications"
+          >
+            <Bell className="w-5 h-5 text-gray-600" />
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-semibold">
+              5
+            </span>
+          </button>
 
           <div className="flex items-center gap-3">
             <div className="hidden sm:block text-right leading-tight">
