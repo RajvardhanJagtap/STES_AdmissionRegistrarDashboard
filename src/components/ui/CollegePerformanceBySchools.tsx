@@ -32,27 +32,27 @@ const CollegePerformanceBySchools: React.FC = () => {
         <div className="w-full overflow-x-auto md:overflow-x-hidden scrollbar-hide">
           <table className="w-full min-w-[680px] md:min-w-0 text-sm table-fixed">
             <colgroup>
-              <col className="w-[32%]" />
-              <col className="w-[16%]" />
-              <col className="w-[24%]" />
-              <col className="w-[14%]" />
-              <col className="w-[14%]" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
             </colgroup>
             <thead className="bg-gray-50">
               <tr className="border-b border-gray-200">
-                <th className="text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
+                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
                   School
                 </th>
-                <th className="text-left text-xs font-semibold text-gray-700 pl-2 pr-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   Enrollment
                 </th>
-                <th className="text-left text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   Pass Rate
                 </th>
-                <th className="text-right text-xs font-semibold text-gray-700 pl-3 pr-1 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   Avg GPA
                 </th>
-                <th className="text-right text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
+                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
                   At-risk
                 </th>
               </tr>
@@ -60,17 +60,17 @@ const CollegePerformanceBySchools: React.FC = () => {
             <tbody className="divide-y divide-gray-200">
               {collegePerformanceBySchools.map((row) => (
                 <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="px-3 py-3.5 font-semibold text-gray-900 whitespace-normal break-words">
+                  <td className="px-3 py-3.5 font-semibold text-gray-900 text-center whitespace-normal break-words">
                     {row.school}
                   </td>
 
-                  <td className="pl-2 pr-3 py-3.5 text-left text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
                     {row.enrollment.toLocaleString()}
                   </td>
 
                   <td className="px-3 py-3.5">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-2 w-16 sm:w-20 lg:w-24 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="h-2 w-20 sm:w-24 lg:w-28 rounded-full bg-gray-200 overflow-hidden">
                         <div
                           className="h-full rounded-full bg-[#026892]"
                           style={{
@@ -86,11 +86,11 @@ const CollegePerformanceBySchools: React.FC = () => {
                     </div>
                   </td>
 
-                  <td className="pl-3 pr-1 py-3.5 text-right text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
                     {row.avgGpa.toFixed(2)}
                   </td>
 
-                  <td className="px-3 py-3.5 text-right text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
                     {row.atRiskRate.toFixed(1)}%
                   </td>
                 </tr>
