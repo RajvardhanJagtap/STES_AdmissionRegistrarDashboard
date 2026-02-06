@@ -16,81 +16,58 @@ const CollegePerformanceBySchools: React.FC = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 shadow-sm h-full flex flex-col">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h2 className="text-[18px] font-bold text-gray-900">
-            College Performance by Schools
-          </h2>
-          <div className="text-sm text-gray-600 mt-1 truncate">
-            {academicYear} <span className="mx-1">•</span> {semLabel} overview
-          </div>
+    <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 md:p-5 shadow-sm h-full flex flex-col">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
+        <h2 className="text-base sm:text-lg md:text-[18px] font-bold text-gray-900 whitespace-nowrap">
+          College Performance by Schools
+        </h2>
+        <div className="flex items-center gap-0.5 whitespace-nowrap text-xs">
+          <span className="text-blue-400">●</span>
+          <span className="text-gray-600">{academicYear}</span>
+          <span className="text-emerald-400">●</span>
+          <span className="text-gray-600">{semLabel} overview</span>
         </div>
       </div>
 
-      <div className="mt-3 border border-gray-200 rounded-xl overflow-hidden flex-1">
-        <div className="w-full overflow-x-auto md:overflow-x-hidden scrollbar-hide">
-          <table className="w-full min-w-[680px] md:min-w-0 text-sm table-fixed">
+      <div className="mt-3 sm:mt-4 border border-gray-200 rounded-lg overflow-hidden flex-1">
+        <div className="w-full overflow-x-auto scrollbar-hide">
+          <table className="w-full text-xs sm:text-sm">
             <colgroup>
-              <col className="w-1/5" />
-              <col className="w-1/5" />
-              <col className="w-1/5" />
-              <col className="w-1/5" />
-              <col className="w-1/5" />
+              <col className="w-2/5" />
+              <col className="w-1/6" />
+              <col className="w-1/6" />
+              <col className="w-1/6" />
+              <col className="w-1/6" />
             </colgroup>
-            <thead className="bg-gray-50">
-              <tr className="border-b border-gray-200">
-                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide">
-                  School
-                </th>
-                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  Enrollment
-                </th>
-                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  Pass Rate
-                </th>
-                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  Avg GPA
-                </th>
-                <th className="text-center text-xs font-semibold text-gray-700 px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  At-risk
-                </th>
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-2 py-2 sm:py-2.5">School</th>
+                <th className="text-center text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-2 py-2 sm:py-2.5 whitespace-nowrap align-middle">Enrollment</th>
+                <th className="text-right text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-2 py-2 sm:py-2.5 whitespace-nowrap">Pass rate</th>
+                <th className="text-center text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-2 py-2 sm:py-2.5 whitespace-nowrap">Avg gpa</th>
+                <th className="text-right text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-2 py-2 sm:py-2.5 whitespace-nowrap">Risk</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
-              {collegePerformanceBySchools.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="px-3 py-3.5 font-semibold text-gray-900 text-center whitespace-normal break-words">
+            <tbody className="divide-y divide-gray-100">
+              {collegePerformanceBySchools.map((row, index) => (
+                <tr key={row.id} className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-blue-50/30`}>
+                  <td className="px-1.5 sm:px-2 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
                     {row.school}
                   </td>
 
-                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-1.5 sm:px-2 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 whitespace-nowrap align-middle text-center">
                     {row.enrollment.toLocaleString()}
                   </td>
 
-                  <td className="px-3 py-3.5">
-                    <div className="flex flex-col items-center gap-1">
-                      <div className="h-2 w-20 sm:w-24 lg:w-28 rounded-full bg-gray-200 overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-[#026892]"
-                          style={{
-                            width: `${Math.max(0, Math.min(100, row.passRate))}%`,
-                          }}
-                        />
-                      </div>
-                      <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold tabular-nums ${toneForPassRate(row.passRate)}`}
-                      >
-                        {row.passRate.toFixed(1)}%
-                      </span>
-                    </div>
+                  <td className="px-1.5 sm:px-2 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap text-right">
+                    {row.passRate.toFixed(1)}%
                   </td>
 
-                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-1.5 sm:px-2 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 whitespace-nowrap text-center">
                     {row.avgGpa.toFixed(2)}
                   </td>
 
-                  <td className="px-3 py-3.5 text-center text-gray-700 whitespace-nowrap tabular-nums">
+                  <td className="px-1.5 sm:px-2 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 whitespace-nowrap text-right">
                     {row.atRiskRate.toFixed(1)}%
                   </td>
                 </tr>

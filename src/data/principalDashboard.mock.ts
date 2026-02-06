@@ -28,7 +28,7 @@ export const principalDashboardStats: StatCard[] = [
     icon: React.createElement(User),
     iconColor: "green",
     change: {
-      text: "current semester",
+      text: "5% from current semester",
       variant: "positive",
     },
   },
@@ -86,5 +86,14 @@ export const collegePerformanceBySchools: SchoolPerformance[] = [
     avgGpa: 3.27,
     atRiskRate: 6.3,
     trendPp: 1.2,
+  },
+  {
+    id: "s4",
+    school: "School of Architecture",
+    enrollment: 256,
+    passRate: 88.5,
+    avgGpa: 3.18,
+    atRiskRate: 8.1,
+    trendPp: 0.7,
   },
 ];

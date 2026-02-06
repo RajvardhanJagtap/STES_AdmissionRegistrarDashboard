@@ -65,11 +65,11 @@ const QuickActions: React.FC = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm h-auto sm:h-[300px] flex flex-col">
-      <h2 className="text-[18px] font-bold text-gray-900 mb-2.5">
+    <div className="bg-white border border-gray-100 rounded-xl p-3 sm:p-4 md:p-5 shadow-sm h-auto sm:h-[300px] flex flex-col">
+      <h2 className="text-base sm:text-lg md:text-[18px] font-bold text-gray-900 mb-2 sm:mb-2.5">
         Quick Actions
       </h2>
-      <div className="flex flex-col flex-1 gap-2">
+      <div className="flex flex-col flex-1 gap-1.5 sm:gap-2">
         {actions.map((action, index) => {
           const isEmphasis = index === actions.length - 1;
           const styles = getItemStyles(isEmphasis);
@@ -77,7 +77,7 @@ const QuickActions: React.FC = () => {
           return (
             <Link key={action.id} href={action.href} className="block">
               <div
-                className={`flex items-center gap-3 px-3.5 py-3 rounded-xl ${styles.bg} ${styles.hover} transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 ${styles.ring}`}
+                className={`flex items-center gap-2 sm:gap-3 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl text-xs sm:text-sm ${styles.bg} ${styles.hover} transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 ${styles.ring}`}
               >
                 <div className={`flex-shrink-0 ${styles.icon}`}>
                   <span className="[&>svg]:h-5 [&>svg]:w-5">{action.icon}</span>

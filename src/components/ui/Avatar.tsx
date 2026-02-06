@@ -32,7 +32,7 @@ const Avatar: React.FC<AvatarProps> = ({
   };
 
   const displayInitials = (initials || "").trim()
-    ? initials.trim().toUpperCase().slice(0, 2)
+    ? (initials || "").trim().toUpperCase().slice(0, 2)
     : getInitials(name);
 
   return (

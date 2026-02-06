@@ -14,7 +14,7 @@ import { principalDashboardStats } from "@/data/principalDashboard.mock";
 export default function HomePage() {
   return (
     <MainLayout headerVariant="principalDashboard">
-      <div className="w-full min-h-screen bg-white">
+      <div className="w-full min-h-screen bg-slate-50">
         <WelcomeSection userName={currentPrincipal.name} />
 
         {/* Stats */}

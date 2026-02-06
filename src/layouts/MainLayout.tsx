@@ -20,7 +20,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Topbar: fixed, full width, always at the top */}
       <Header
         user={currentPrincipal}

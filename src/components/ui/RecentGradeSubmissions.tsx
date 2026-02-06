@@ -56,64 +56,50 @@ const RecentGradeSubmissions: React.FC = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 shadow-sm h-full flex flex-col">
+    <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 md:p-5 shadow-sm h-full flex flex-col">
       <div>
-        <h2 className="text-[18px] font-bold text-gray-900 leading-tight">
+        <h2 className="text-base sm:text-lg md:text-[18px] font-bold text-gray-900 leading-tight">
           Recent Grade Submissions
         </h2>
-        <p className="text-sm text-gray-500 mt-1">Grade submissions by group</p>
       </div>
 
-      <div className="mt-3 border border-gray-200 rounded-xl overflow-hidden flex-1">
+      <div className="mt-3 sm:mt-4 border border-gray-200 rounded-lg overflow-hidden flex-1">
         <div className="w-full overflow-x-auto scrollbar-hide">
-          <table className="w-full min-w-[560px] text-sm">
-            <thead className="bg-gray-50">
-              <tr className="border-b border-gray-200">
-                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
-                  Group
-                </th>
-                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  Year
-                </th>
-                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
-                  Completion
-                </th>
-                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 pl-1 sm:pl-2 pr-2 sm:pr-3 py-2.5 uppercase tracking-wide whitespace-nowrap">
-                  Modules
-                </th>
-                <th className="text-left text-[11px] sm:text-xs font-semibold text-gray-700 px-2 sm:px-3 py-2.5 uppercase tracking-wide">
-                  Status
-                </th>
+          <table className="w-full text-xs sm:text-sm">
+            <colgroup>
+              <col className="w-28" />
+              <col className="w-16" />
+              <col className="w-20" />
+              <col className="w-16" />
+              <col className="w-24" />
+            </colgroup>
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5">Group</th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Year</th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Completion</th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Modules</th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
-              {rows.map((row) => (
-                <tr key={row.group} className="hover:bg-gray-50">
-                  <td className="px-2 sm:px-3 py-3 font-semibold text-gray-900 whitespace-normal break-normal">
+            <tbody className="divide-y divide-gray-100">
+              {rows.map((row, index) => (
+                <tr key={row.group} className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-blue-50/30`}>
+                  <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
                     {row.group}
                   </td>
-                  <td className="px-2 sm:px-3 py-3 text-gray-700 whitespace-nowrap">
+                  <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 whitespace-nowrap">
                     {row.year}
                   </td>
-                  <td className="px-2 sm:px-3 py-3">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-2 w-20 sm:w-28 rounded-full bg-gray-200 overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-[#026892]"
-                          style={{ width: `${row.progress}%` }}
-                        />
-                      </div>
-                      <span className="text-xs font-semibold text-gray-900 tabular-nums whitespace-nowrap">
-                        {row.progress}%
-                      </span>
-                    </div>
+                  <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap text-center">
+                    {row.progress}%
                   </td>
-                  <td className="pl-1 sm:pl-2 pr-2 sm:pr-3 py-3 text-left font-semibold text-gray-900 whitespace-nowrap tabular-nums">
+                  <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 whitespace-nowrap text-center">
                     {row.modules}
                   </td>
-                  <td className="px-2 sm:px-3 py-3 whitespace-nowrap">
+                  <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap text-center">
                     <span
-                      className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ${getStatusPill(row.status)}`}
+                      className={`inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold w-24 ${getStatusPill(row.status)}`}
                     >
                       {row.status}
                     </span>

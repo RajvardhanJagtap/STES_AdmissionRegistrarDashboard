@@ -91,7 +91,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
         )}
       >
         {/* Navigation */}
-        <nav className="p-4 space-y-2 h-full overflow-y-auto">
+        <nav className="p-2 space-y-0.5 h-full overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = item.id === activeId;
@@ -104,7 +104,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
                   if (isOpen) onToggle();
                 }}
                 className={cn(
-                  "w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-[15px] font-semibold transition-colors",
+                  "w-full flex items-center gap-3 px-4 py-2 rounded-2xl text-[15px] font-medium transition-colors",
                   isActive
                     ? "bg-[#EAF7F1] text-[#026892]"
                     : "text-slate-800 hover:bg-slate-50",

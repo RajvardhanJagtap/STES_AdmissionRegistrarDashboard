@@ -27,7 +27,8 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
     useAcademicContext();
 
   const semesterLabel = semester === "Fall" ? "semester one" : "semester two";
-  const mobileSemesterLabel = semester === "Fall" ? "Sem 1" : "Sem 2";
+  const mobileSemesterLabel =
+    semester === "Fall" ? "Semester One" : "Semester Two";
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
@@ -47,14 +48,14 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
             <Image
               src="/images/ur-logo.jpeg"
               alt="UR Logo"
-              width={36}
-              height={36}
+              width={48}
+              height={48}
               className="rounded-full flex-shrink-0"
               priority
             />
 
             <div className="min-w-0 leading-tight">
-              <div className="text-[18px] sm:text-[20px] font-semibold tracking-normal text-[#026892] truncate">
+              <div className="text-[18px] sm:text-[20px] font-semibold tracking-normal text-black truncate">
                 SAMPS UR
               </div>
               <div className="hidden md:block text-xs sm:text-sm text-gray-500 truncate">
@@ -77,23 +78,22 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
 
             <button
               type="button"
-              className="flex items-center gap-1 p-1 rounded-md hover:bg-gray-100"
-              aria-label="Profile menu"
+              className="flex items-center p-1 rounded-md hover:bg-gray-100"
+              aria-label="Profile"
             >
               <Avatar
                 name={user?.name || "Ignace Gatare"}
                 initials={user?.initials || "G"}
                 size="md"
               />
-              <ChevronDown className="w-4 h-4 text-gray-600" />
             </button>
           </div>
         </div>
 
         {/* Mobile second row: Academic Year + Semester (matches screenshot) */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-2 flex-nowrap">
           <Select value={academicYear} onValueChange={setAcademicYear}>
-            <SelectTrigger className="h-9 w-[124px] border-gray-200 text-xs font-semibold whitespace-nowrap">
+            <SelectTrigger className="h-9 w-[120px] border-gray-200 text-xs font-semibold whitespace-nowrap">
               <SelectValue placeholder="2024-2025" />
             </SelectTrigger>
             <SelectContent>
@@ -105,15 +105,15 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
           <Select
             value={mobileSemesterLabel}
             onValueChange={(value) =>
-              setSemester(value === "Sem 1" ? "Fall" : "Spring")
+              setSemester(value === "Semester One" ? "Fall" : "Spring")
             }
           >
-            <SelectTrigger className="h-9 w-[96px] border-gray-200 text-xs font-semibold whitespace-nowrap">
-              <SelectValue placeholder="Sem 1" />
+            <SelectTrigger className="h-9 w-[140px] border-gray-200 text-xs font-semibold whitespace-nowrap">
+              <SelectValue placeholder="Semester One" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Sem 1">Sem 1</SelectItem>
-              <SelectItem value="Sem 2">Sem 2</SelectItem>
+              <SelectItem value="Semester One">Semester One</SelectItem>
+              <SelectItem value="Semester Two">Semester Two</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -182,7 +182,8 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
     useAcademicContext();
 
   const semesterLabel = semester === "Fall" ? "semester one" : "semester two";
-  const mobileSemesterLabel = semester === "Fall" ? "Sem 1" : "Sem 2";
+  const mobileSemesterLabel =
+    semester === "Fall" ? "Semester One" : "Semester Two";
   const rawUsername = (user?.email || "gatare@example.com").split("@")[0];
   const username = rawUsername
     ? rawUsername.charAt(0).toUpperCase() + rawUsername.slice(1)
@@ -196,8 +197,8 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
           <Image
             src="/images/ur-logo.jpeg"
             alt="UR Logo"
-            width={48}
-            height={48}
+            width={60}
+            height={60}
             className="rounded-full"
             priority
           />
@@ -222,14 +223,14 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
                 <Image
                   src="/images/ur-logo.jpeg"
                   alt="UR Logo"
-                  width={36}
-                  height={36}
+                  width={44}
+                  height={44}
                   className="rounded-full"
                   priority
                 />
               </div>
 
-              <h1 className="text-[18px] sm:text-[20px] font-medium tracking-normal text-[#026892] truncate">
+              <h1 className="text-[18px] sm:text-[20px] font-medium tracking-normal text-black truncate">
                 SAMPS UR
               </h1>
             </div>
@@ -265,9 +266,9 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
           </div>
 
           {/* Mobile second row: Academic Year + Semester (editable) */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 flex-nowrap">
             <Select value={academicYear} onValueChange={setAcademicYear}>
-              <SelectTrigger className="h-8 w-[118px] border-gray-200 text-xs font-medium whitespace-nowrap">
+              <SelectTrigger className="h-8 w-[120px] border-gray-200 text-xs font-medium whitespace-nowrap">
                 <SelectValue placeholder="2024-2025" />
               </SelectTrigger>
               <SelectContent>
@@ -279,15 +280,15 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
             <Select
               value={mobileSemesterLabel}
               onValueChange={(value) =>
-                setSemester(value === "Sem 1" ? "Fall" : "Spring")
+                setSemester(value === "Semester One" ? "Fall" : "Spring")
               }
             >
-              <SelectTrigger className="h-8 w-[104px] px-2 border-gray-200 text-xs font-medium whitespace-nowrap">
-                <SelectValue placeholder="Sem 1" />
+              <SelectTrigger className="h-8 w-[140px] px-2 border-gray-200 text-xs font-medium whitespace-nowrap">
+                <SelectValue placeholder="Semester One" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Sem 1">Sem 1</SelectItem>
-                <SelectItem value="Sem 2">Sem 2</SelectItem>
+                <SelectItem value="Semester One">Semester One</SelectItem>
+                <SelectItem value="Semester Two">Semester Two</SelectItem>
               </SelectContent>
             </Select>
           </div>
