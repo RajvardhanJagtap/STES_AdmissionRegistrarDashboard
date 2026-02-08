@@ -75,16 +75,29 @@ const RecentGradeSubmissions: React.FC = () => {
             </colgroup>
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5">Group</th>
-                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Year</th>
-                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Completion</th>
-                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Modules</th>
-                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">Status</th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5">
+                  Group
+                </th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">
+                  Year
+                </th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">
+                  Completion
+                </th>
+                <th className="text-left text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap">
+                  Modules
+                </th>
+                <th className="text-center text-xs sm:text-sm font-bold text-gray-900 px-1.5 sm:px-3 py-2 sm:py-2.5 whitespace-nowrap align-middle">
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {rows.map((row, index) => (
-                <tr key={row.group} className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-blue-50/30`}>
+                <tr
+                  key={row.group}
+                  className={`transition-colors ${index % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-blue-50/30`}
+                >
                   <td className="px-1.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
                     {row.group}
                   </td>
