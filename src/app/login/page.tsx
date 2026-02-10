@@ -34,19 +34,19 @@ export default function LoginPage() {
             </div>
             <h2 className="text-3xl font-bold mb-4">Excellence in Education</h2>
             <p className="text-blue-100 text-lg leading-relaxed">
-              Manage institutional performance with a unified principal
-              dashboard. Review key metrics, track outcomes, and handle
-              approvals in one place.
+              Manage admissions with a unified registrar dashboard. Review
+              applications, track processing, and monitor intake capacity in
+              one place.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-6 text-sm">
             <div className="bg-white/10 rounded-lg p-4">
-              <div className="font-semibold mb-1">Academic Tracking</div>
-              <div className="text-blue-100">Monitor outcomes & compliance</div>
+                <div className="font-semibold mb-1">Application Review</div>
+                <div className="text-blue-100">Track processing & decisions</div>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
-              <div className="font-semibold mb-1">Financial Management</div>
-              <div className="text-blue-100">Track budgets & approvals</div>
+                <div className="font-semibold mb-1">Intake Capacity</div>
+                <div className="text-blue-100">Monitor capacity & enrollment</div>
             </div>
           </div>
         </div>
@@ -59,10 +59,10 @@ export default function LoginPage() {
             <h1 className="text-4xl font-bold text-gray-900 mb-3">
               Welcome back to
               <br />
-              <span className="text-[#026892]">Principal Portal</span>
+              <span className="text-[#026892]">Admission Portal</span>
             </h1>
             <p className="text-gray-600 text-lg">
-              Institution Management Dashboard
+              Admission Registrar Dashboard
             </p>
           </div>
 

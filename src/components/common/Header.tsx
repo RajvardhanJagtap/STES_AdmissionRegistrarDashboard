@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Bell, ChevronDown, Menu } from "lucide-react";
 import {
   Select,
@@ -16,13 +17,14 @@ import Image from "next/image";
 interface HeaderProps {
   user?: User;
   onToggleSidebar?: () => void;
-  variant?: "default" | "principalDashboard";
+  variant?: "default" | "admissionRegistrarDashboard";
 }
 
-const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
+const AdmissionRegistrarDashboardHeader: React.FC<HeaderProps> = ({
   user,
   onToggleSidebar,
 }) => {
+  const [area, setArea] = useState("Admission");
   const { academicYear, semester, setAcademicYear, setSemester } =
     useAcademicContext();
 
@@ -59,13 +61,22 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
                 SAMPS UR
               </div>
               <div className="hidden md:block text-xs sm:text-sm text-gray-500 truncate">
-                Principal Dashboard
+                Admission Registrar Dashboard
               </div>
             </div>
           </div>
 
           {/* Mobile right-side actions (matches screenshot) */}
           <div className="md:hidden flex items-center gap-2 flex-shrink-0">
+            <Select value={area} onValueChange={setArea}>
+              <SelectTrigger className="h-9 w-[140px] border-gray-200 text-sm font-medium px-3 rounded-lg shadow-sm">
+                <SelectValue placeholder="Admission" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Admission">Admission</SelectItem>
+              </SelectContent>
+            </Select>
+
             <button
               className="relative p-2 rounded-md hover:bg-gray-100"
               aria-label="Notifications"
@@ -82,8 +93,8 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
               aria-label="Profile"
             >
               <Avatar
-                name={user?.name || "Ignace Gatare"}
-                initials={user?.initials || "G"}
+                name={user?.name || "Registrar"}
+                initials={user?.initials || "R"}
                 size="md"
               />
             </button>
@@ -145,6 +156,15 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
             </SelectContent>
           </Select>
 
+          <Select value={area} onValueChange={setArea}>
+            <SelectTrigger className="h-9 w-[140px] border-gray-200 text-sm font-medium px-3 rounded-lg shadow-sm">
+              <SelectValue placeholder="Admission" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Admission">Admission</SelectItem>
+            </SelectContent>
+          </Select>
+
           <button
             className="relative p-2 rounded-md hover:bg-gray-100"
             aria-label="Notifications"
@@ -161,13 +181,13 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
                 {user?.name || "Ignace Gatare"}
               </div>
               <div className="text-xs text-gray-500">
-                {user?.role || "Principal"}
+                {user?.role || "Admission"}
               </div>
             </div>
 
             <Avatar
-              name={user?.name || "Ignace Gatare"}
-              initials={user?.initials || "G"}
+              name={user?.name || "Registrar"}
+              initials={user?.initials || "R"}
               size="md"
             />
           </div>
@@ -178,16 +198,17 @@ const PrincipalDashboardHeader: React.FC<HeaderProps> = ({
 };
 
 const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
+  const [area, setArea] = useState("Admission");
   const { academicYear, semester, setAcademicYear, setSemester } =
     useAcademicContext();
 
   const semesterLabel = semester === "Fall" ? "semester one" : "semester two";
   const mobileSemesterLabel =
     semester === "Fall" ? "Semester One" : "Semester Two";
-  const rawUsername = (user?.email || "gatare@example.com").split("@")[0];
+  const rawUsername = (user?.email || "registrar@example.com").split("@")[0];
   const username = rawUsername
     ? rawUsername.charAt(0).toUpperCase() + rawUsername.slice(1)
-    : "Gatare";
+    : "Registrar";
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
@@ -236,6 +257,15 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
             </div>
 
             <div className="md:hidden flex items-center gap-2 flex-shrink-0">
+              <Select value={area} onValueChange={setArea}>
+                <SelectTrigger className="h-9 w-[140px] border-gray-200 text-sm font-medium px-3 rounded-lg shadow-sm">
+                  <SelectValue placeholder="Admission" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Admission">Admission</SelectItem>
+                </SelectContent>
+              </Select>
+
               {/* Notifications */}
               <button className="relative p-2 rounded-md hover:bg-gray-100">
                 <Bell className="w-5 h-5 text-gray-600" />
@@ -249,11 +279,11 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
                 <SelectTrigger className="h-9 border-gray-200 text-sm font-medium px-2 max-w-[140px]">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="hidden sm:block truncate">
-                      <SelectValue placeholder="Gatare" />
+                      <SelectValue placeholder="Registrar" />
                     </span>
                     <Avatar
-                      name={user?.name || "Gatare"}
-                      initials={user?.initials || "G"}
+                      name={user?.name || "Registrar"}
+                      initials={user?.initials || "R"}
                       size="sm"
                     />
                   </div>
@@ -295,6 +325,15 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
 
           {/* Desktop controls */}
           <div className="hidden md:flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <Select value={area} onValueChange={setArea}>
+              <SelectTrigger className="h-9 w-[140px] border-gray-200 text-sm font-medium px-3 rounded-lg shadow-sm">
+                <SelectValue placeholder="Admission" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Admission">Admission</SelectItem>
+              </SelectContent>
+            </Select>
+
             {/* Notifications */}
             <button className="relative p-2 rounded-md hover:bg-gray-100">
               <Bell className="w-5 h-5 text-gray-600" />
@@ -335,11 +374,11 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
               <SelectTrigger className="h-9 border-gray-200 text-sm font-medium px-2 sm:px-3 max-w-[180px]">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="hidden sm:block truncate">
-                    <SelectValue placeholder="Gatare" />
+                    <SelectValue placeholder="Registrar" />
                   </span>
                   <Avatar
-                    name={user?.name || "Gatare"}
-                    initials={user?.initials || "G"}
+                    name={user?.name || "Registrar"}
+                    initials={user?.initials || "R"}
                     size="sm"
                   />
                 </div>
@@ -356,8 +395,8 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
 };
 
 const Header: React.FC<HeaderProps> = (props) => {
-  if (props.variant === "principalDashboard") {
-    return <PrincipalDashboardHeader {...props} />;
+  if (props.variant === "admissionRegistrarDashboard") {
+    return <AdmissionRegistrarDashboardHeader {...props} />;
   }
   return <DefaultHeader {...props} />;
 };

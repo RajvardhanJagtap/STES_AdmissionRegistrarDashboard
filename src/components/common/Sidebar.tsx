@@ -2,15 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import {
-  Home,
-  GraduationCap,
-  ClipboardList,
-  FileText,
-  BookOpen,
-  Clock,
-  FileBarChart,
-} from "lucide-react";
+import { Home, FileText, Users, UserCheck, Mail } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -25,36 +17,29 @@ interface NavItem {
 const navItems: NavItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Home, href: "/" },
   {
-    id: "academic-affairs",
-    label: "Academic Affairs",
-    icon: GraduationCap,
-    href: "/academic",
-  },
-  {
-    id: "grade-submissions",
-    label: "Grade Submissions",
-    icon: ClipboardList,
-    href: "/grade-submissions",
-  },
-  {
-    id: "summary-sheets",
-    label: "Summary Sheets",
+    id: "application-processing",
+    label: "Application Processing",
     icon: FileText,
-    href: "/summary-sheets",
+    href: "/",
   },
   {
-    id: "curriculum",
-    label: "Curriculum",
-    icon: BookOpen,
-    href: "/curriculum",
+    id: "student-records",
+    label: "Student Records",
+    icon: Users,
+    href: "/",
   },
   {
-    id: "service-requests",
-    label: "Service Requests",
-    icon: Clock,
-    href: "/service-requests",
+    id: "enrollment-management",
+    label: "Enrollment Management",
+    icon: UserCheck,
+    href: "/",
   },
-  { id: "reports", label: "Reports", icon: FileBarChart, href: "/reports" },
+  {
+    id: "communication-center",
+    label: "Communication Center",
+    icon: Mail,
+    href: "/",
+  },
 ];
 
 interface SidebarProps {

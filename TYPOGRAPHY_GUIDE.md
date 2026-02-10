@@ -1,8 +1,8 @@
-# Principal Dashboard Typography Guide
+# Admission Registrar Dashboard Typography Guide
 
 ## Overview
 
-Standardized typography system used across the STES Principal Dashboard to ensure consistent sizing, hierarchy, and readability.
+Standardized typography system used across the STES Admission Registrar Dashboard to ensure consistent sizing, hierarchy, and readability.
 
 ## Typography Classes (Defined in `src/styles/globals.css`)
 
@@ -10,7 +10,7 @@ Standardized typography system used across the STES Principal Dashboard to ensur
 
 | Class        | Usage                          | Size             | Weight           | Example                                                      |
 | ------------ | ------------------------------ | ---------------- | ---------------- | ------------------------------------------------------------ |
-| `heading-lg` | Section titles (cards, panels) | 18px (text-lg)   | Bold (font-bold) | "Recent Grade Submissions", "College Performance by Schools" |
+| `heading-lg` | Section titles (cards, panels) | 18px (text-lg)   | Bold (font-bold) | "Application Processing", "Program Distribution" |
 | `heading-md` | Component titles               | 16px (text-base) | Semibold         | Sidebar items, card titles                                   |
 | `heading-sm` | Item headings within cards     | 14px (text-sm)   | Semibold         | Alert titles, exam titles                                    |
 
@@ -27,7 +27,7 @@ Standardized typography system used across the STES Principal Dashboard to ensur
 
 ### Dashboard Page
 
-- **Section Heading**: `heading-lg` (18px, bold) - "Recent Grade Submissions", "College Performance by Schools"
+- **Section Heading**: `heading-lg` (18px, bold) - "Application Processing", "Program Distribution"
 - **Subtitle/Meta**: `muted-text` (12px, regular) - dates, descriptions
 - **Stats Title**: `caption-text` (12px, regular)
 - **Stats Value**: 24px (text-2xl, bold) - numerical values

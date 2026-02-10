@@ -2,45 +2,34 @@
 
 import React from "react";
 import Link from "next/link";
-import { BarChart3, BookOpen, ClipboardList, FileText } from "lucide-react";
+import { CheckCircle2, FileText, MessageSquare } from "lucide-react";
 
 interface QuickAction {
   id: string;
   label: string;
   icon: React.ReactNode;
   href: string;
-  variant: "blue" | "green" | "orange" | "purple";
 }
 
 const QuickActions: React.FC = () => {
   const actions: QuickAction[] = [
     {
-      id: "marks-submitted",
-      label: "Marks Submitted",
-      icon: <ClipboardList size={20} />,
-      href: "/grade-submissions",
-      variant: "blue",
-    },
-    {
-      id: "service-requests",
-      label: "Service Requests",
+      id: "review-applications",
+      label: "Review Applications",
       icon: <FileText size={20} />,
-      href: "/service-requests",
-      variant: "green",
+      href: "/",
     },
     {
-      id: "academic-affairs",
-      label: "Academic Affairs",
-      icon: <BookOpen size={20} />,
-      href: "/academic",
-      variant: "orange",
+      id: "approve-admissions",
+      label: "Approve Admissions",
+      icon: <CheckCircle2 size={20} />,
+      href: "/",
     },
     {
-      id: "reports",
-      label: "Reports",
-      icon: <BarChart3 size={20} />,
-      href: "/reports",
-      variant: "purple",
+      id: "send-communication",
+      label: "Send Communication",
+      icon: <MessageSquare size={20} />,
+      href: "/",
     },
   ];
 
@@ -65,7 +54,7 @@ const QuickActions: React.FC = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-3 sm:p-4 md:p-5 shadow-sm h-auto sm:h-[300px] flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-xl p-3 sm:p-4 md:p-5 shadow-sm h-auto sm:h-[280px] flex flex-col">
       <h2 className="text-base sm:text-lg md:text-[18px] font-bold text-gray-900 mb-2 sm:mb-2.5">
         Quick Actions
       </h2>

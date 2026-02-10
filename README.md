@@ -1,6 +1,6 @@
-# Principal Dashboard - STES
+# Admission Registrar Dashboard - STES
 
-A professional, scalable principal dashboard built with Next.js 14, TypeScript, and Tailwind CSS.
+A professional Admission Registrar dashboard built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ## 🚀 Getting Started
 
@@ -33,21 +33,16 @@ src/
 ├── app/
 │   ├── layout.tsx        → Root layout with metadata
 │   ├── page.tsx          → Main landing/dashboard page
-│   ├── academic/          → Academic affairs
-│   ├── grade-submissions/ → Grade submissions
-│   ├── summary-sheets/    → Summary sheets
-│   ├── curriculum/        → Curriculum
-│   ├── service-requests/  → Service requests
-│   └── reports/           → Reports
+│   └── login/             → Login page
 │
 ├── components/
 │   ├── ui/               → Reusable UI components
 │   │   ├── WelcomeSection.tsx
 │   │   ├── StatCard.tsx
-│   │   ├── NewRegisteredStudents.tsx
-│   │   ├── FinancialStatus.tsx
-│   │   ├── RecentGradeSubmissions.tsx
-│   │   └── CollegePerformanceBySchools.tsx
+│   │   ├── AdmissionSummary.tsx
+│   │   ├── IntakeCapacity.tsx
+│   │   ├── ApplicationProcessing.tsx
+│   │   └── ProgramDistribution.tsx
 │   ├── common/           → Shared layout components
 │   │   ├── Header.tsx
 │   │   └── Sidebar.tsx
@@ -65,8 +60,8 @@ src/
 │   └── AcademicContext.tsx
 
 ├── data/
-│   ├── principalUser.ts
-│   └── principalDashboard.mock.ts
+│   ├── admissionRegistrarUser.ts
+│   └── admissionRegistrarDashboard.mock.ts
 │
 ├── styles/
 │   └── globals.css       → Global Tailwind styles
@@ -109,7 +104,7 @@ src/
 
 ## 📝 Next Steps
 
-Suggested additions for the principal dashboard:
+Suggested additions for the admission registrar dashboard:
 
 - Expand module pages (Academic Affairs, Grade Submissions, Summary Sheets, Curriculum, Service Requests, Reports)
 - Integrations/APIs for real institutional data (replace mocks)
@@ -124,4 +119,4 @@ Suggested additions for the principal dashboard:
 
 ## 📄 License
 
-Private project for STES Principal Dashboard.
+Private project for STES Admission Registrar Dashboard.

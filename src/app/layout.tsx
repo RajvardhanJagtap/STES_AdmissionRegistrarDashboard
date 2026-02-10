@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Principal Dashboard - STES",
+  title: "Admission Registrar Dashboard - STES",
   description:
-    "Principal dashboard for monitoring academics, staff, performance, and approvals",
+    "Admission registrar dashboard for application processing, enrollment, and communication",
 };
 
 export default function RootLayout({

@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/common/Footer";
-import { currentPrincipal } from "@/data/principalUser";
+import { currentAdmissionRegistrar } from "@/data/admissionRegistrarUser";
 
 interface MainLayoutProps {
   children: React.ReactNode;
-  headerVariant?: "default" | "principalDashboard";
+  headerVariant?: "default" | "admissionRegistrarDashboard";
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
@@ -23,7 +23,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Topbar: fixed, full width, always at the top */}
       <Header
-        user={currentPrincipal}
+        user={currentAdmissionRegistrar}
         onToggleSidebar={toggleSidebar}
         variant={headerVariant}
       />
