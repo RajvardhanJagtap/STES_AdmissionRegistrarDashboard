@@ -67,10 +67,14 @@ const IntakeCapacity: React.FC = () => {
 
         <div className="flex-1 min-h-0 border border-gray-200 rounded-lg overflow-hidden">
           <div className="bg-gray-50 border-b border-gray-200 px-2.5 sm:px-3 py-2">
-            <div className="grid grid-cols-12 gap-2 text-[11px] sm:text-xs font-bold text-gray-800">
+            <div className="grid grid-cols-12 gap-x-4 sm:gap-x-5 text-[11px] sm:text-xs font-bold text-gray-800">
               <div className="col-span-5">Program</div>
-              <div className="col-span-2 text-center">Capacity</div>
-              <div className="col-span-2 text-center">Enrolled</div>
+              <div className="col-span-2 text-center whitespace-nowrap">
+                Capacity
+              </div>
+              <div className="col-span-2 text-center whitespace-nowrap pl-1">
+                Enrolled
+              </div>
               <div className="col-span-3 text-center">Remaining</div>
             </div>
           </div>
@@ -78,7 +82,7 @@ const IntakeCapacity: React.FC = () => {
           <div className="divide-y divide-gray-100">
             {intake.map((row) => (
               <div key={row.program} className="px-2.5 sm:px-3 py-2">
-                <div className="grid grid-cols-12 gap-2 items-center">
+                <div className="grid grid-cols-12 gap-x-4 sm:gap-x-5 items-center">
                   <div className="col-span-5 min-w-0">
                     <div className="text-xs sm:text-sm font-medium text-gray-900 truncate">
                       {row.program}
@@ -87,7 +91,7 @@ const IntakeCapacity: React.FC = () => {
                   <div className="col-span-2 text-center text-[11px] sm:text-xs text-gray-700 whitespace-nowrap">
                     {row.capacity.toLocaleString()}
                   </div>
-                  <div className="col-span-2 text-center text-[11px] sm:text-xs font-semibold text-gray-900 whitespace-nowrap">
+                  <div className="col-span-2 text-center text-[11px] sm:text-xs font-semibold text-gray-900 whitespace-nowrap pl-1">
                     {row.enrolled.toLocaleString()}
                   </div>
                   <div className="col-span-3 text-center text-[11px] sm:text-xs text-gray-700 whitespace-nowrap">

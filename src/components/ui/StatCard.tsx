@@ -11,9 +11,9 @@ const StatCard: React.FC<StatCardProps> = ({
   const getVariantStyles = (variant?: string) => {
     switch (variant) {
       case "positive":
-        return "text-emerald-600";
+        return "text-emerald-500";
       case "negative":
-        return "text-red-600";
+        return "text-red-500";
       case "warning":
         return "text-orange-600";
       default:

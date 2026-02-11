@@ -8,11 +8,11 @@ Standardized typography system used across the STES Admission Registrar Dashboar
 
 ### Heading Styles
 
-| Class        | Usage                          | Size             | Weight           | Example                                                      |
-| ------------ | ------------------------------ | ---------------- | ---------------- | ------------------------------------------------------------ |
+| Class        | Usage                          | Size             | Weight           | Example                                          |
+| ------------ | ------------------------------ | ---------------- | ---------------- | ------------------------------------------------ |
 | `heading-lg` | Section titles (cards, panels) | 18px (text-lg)   | Bold (font-bold) | "Application Processing", "Program Distribution" |
-| `heading-md` | Component titles               | 16px (text-base) | Semibold         | Sidebar items, card titles                                   |
-| `heading-sm` | Item headings within cards     | 14px (text-sm)   | Semibold         | Alert titles, exam titles                                    |
+| `heading-md` | Component titles               | 16px (text-base) | Semibold         | Sidebar items, card titles                       |
+| `heading-sm` | Item headings within cards     | 14px (text-sm)   | Semibold         | Alert titles, exam titles                        |
 
 ### Body & Text Styles
 

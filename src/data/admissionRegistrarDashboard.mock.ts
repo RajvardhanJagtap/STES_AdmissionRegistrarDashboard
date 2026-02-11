@@ -11,7 +11,7 @@ export const admissionRegistrarDashboardStats: StatCard[] = [
     iconColor: "blue",
     change: {
       text: "+15% from last year",
-      variant: "neutral",
+      variant: "positive",
     },
   },
   {
@@ -22,7 +22,7 @@ export const admissionRegistrarDashboardStats: StatCard[] = [
     iconColor: "green",
     change: {
       text: "71.7% approval rate",
-      variant: "neutral",
+      variant: "positive",
     },
   },
   {
@@ -31,7 +31,7 @@ export const admissionRegistrarDashboardStats: StatCard[] = [
     value: "456",
     icon: React.createElement(AlertCircle),
     iconColor: "orange",
-    change: { text: "Pending decision", variant: "neutral" },
+    change: { text: "Pending decision", variant: "negative" },
   },
   {
     id: "waiting-list",

@@ -76,7 +76,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
         )}
       >
         {/* Navigation */}
-        <nav className="p-2 space-y-0.5 h-full overflow-y-auto">
+        <nav className="p-2 space-y-2 h-full overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = item.id === activeId;

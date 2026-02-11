@@ -4,12 +4,68 @@ import React from "react";
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   ResponsiveContainer,
   XAxis,
   YAxis,
   LabelList,
 } from "recharts";
 import { BarChart3 } from "lucide-react";
+
+type AxisTickProps = {
+  x?: number;
+  y?: number;
+  payload?: { value?: string | number };
+};
+
+const MultiLineXAxisTick: React.FC<AxisTickProps> = ({
+  x = 0,
+  y = 0,
+  payload,
+}) => {
+  const rawValue = payload?.value ?? "";
+  const words = String(rawValue).split(/\s+/).filter(Boolean);
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={24}
+        textAnchor="middle"
+        fill="#111827"
+        fontSize={12}
+        fontWeight={600}
+      >
+        {words.map((word, idx) => (
+          <tspan key={`${word}-${idx}`} x={0} dy={idx === 0 ? 0 : 14}>
+            {word}
+          </tspan>
+        ))}
+      </text>
+    </g>
+  );
+};
+
+const YAxisTick: React.FC<AxisTickProps> = ({ x = 0, y = 0, payload }) => {
+  const value = payload?.value;
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={10}
+        textAnchor="end"
+        fill="#6B7280"
+        fontSize={12}
+        fontWeight={600}
+      >
+        {value}
+      </text>
+    </g>
+  );
+};
 
 const ApplicationProcessing: React.FC = () => {
   const data = [
@@ -28,34 +84,53 @@ const ApplicationProcessing: React.FC = () => {
       </div>
 
       <div className="mt-3 sm:mt-4 flex-1">
-        <div className="h-[170px] sm:h-[190px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[300px] sm:h-[320px] w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth={0}
+            minHeight={300}
+          >
             <BarChart
               data={data}
-              layout="vertical"
-              margin={{ top: 8, right: 34, left: 6, bottom: 6 }}
-              barCategoryGap={18}
+              margin={{ top: 10, right: 10, left: 8, bottom: 32 }}
+              barCategoryGap="30%"
             >
-              <XAxis type="number" domain={[0, 100]} hide />
+              <CartesianGrid
+                stroke="#E5E7EB"
+                strokeDasharray="4 4"
+                vertical={false}
+              />
+
               <YAxis
-                type="category"
-                dataKey="name"
-                width={150}
-                tick={{ fontSize: 12, fill: "#111827", fontWeight: 600 }}
+                domain={[0, 100]}
+                tick={<YAxisTick />}
                 axisLine={false}
                 tickLine={false}
+                width={48}
+                tickMargin={10}
+                padding={{ top: 0, bottom: 0 }}
+              />
+              <XAxis
+                dataKey="name"
+                interval={0}
+                tick={<MultiLineXAxisTick />}
+                tickLine={false}
+                axisLine={false}
+                height={68}
+                tickMargin={12}
               />
 
               <Bar
                 dataKey="value"
                 fill="#026892"
-                radius={[999, 999, 999, 999]}
-                barSize={10}
+                radius={[0, 0, 0, 0]}
+                barSize={50}
                 isAnimationActive={false}
               >
                 <LabelList
                   dataKey="value"
-                  position="right"
+                  position="top"
                   formatter={(v: number) => `${v.toFixed(1)}%`}
                   style={{ fill: "#111827", fontSize: 12, fontWeight: 700 }}
                 />

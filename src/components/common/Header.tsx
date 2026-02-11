@@ -57,7 +57,7 @@ const AdmissionRegistrarDashboardHeader: React.FC<HeaderProps> = ({
             />
 
             <div className="min-w-0 leading-tight">
-              <div className="text-[18px] sm:text-[20px] font-semibold tracking-normal text-black truncate">
+              <div className="hidden sm:block text-[18px] sm:text-[20px] font-semibold tracking-normal text-black truncate">
                 SAMPS UR
               </div>
               <div className="hidden md:block text-xs sm:text-sm text-gray-500 truncate">
@@ -251,7 +251,7 @@ const DefaultHeader: React.FC<HeaderProps> = ({ user, onToggleSidebar }) => {
                 />
               </div>
 
-              <h1 className="text-[18px] sm:text-[20px] font-medium tracking-normal text-black truncate">
+              <h1 className="hidden sm:block text-[18px] sm:text-[20px] font-medium tracking-normal text-black truncate">
                 SAMPS UR
               </h1>
             </div>
