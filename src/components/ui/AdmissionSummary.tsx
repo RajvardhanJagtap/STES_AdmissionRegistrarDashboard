@@ -32,10 +32,10 @@ const AdmissionSummary: React.FC = () => {
 
         <div className="flex items-center justify-between gap-3">
           <span className="text-xs sm:text-sm text-gray-700 font-medium">
-            Enrolled Students
+            Total Vacant Seats
           </span>
           <span className="inline-flex items-center justify-center rounded-full px-2 py-0.5 text-[11px] sm:text-xs font-semibold bg-gray-50 text-gray-900 ring-1 ring-inset ring-gray-200">
-            1,234
+            316
           </span>
         </div>
       </div>
